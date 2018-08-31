@@ -1,16 +1,23 @@
-import { tagged } from 'daggy';
-import Stream from 'mithril/stream';
+import { tagged } from "daggy";
 
-const SlideModel = tagged('position', 'uuid', 'title', 'isSelected', 'content');
+const SlideModel = tagged("position", "uuid", "title", "isSelected", "content");
 
-const viewModelMap = signature => {
-  var _map = {};
-  return function(key) {
-    if (!_map[key]) {
-      _map[key] = {};
-      for (var prop in signature) _map[key][prop] = Stream(signature[prop]());
-    }
-    return _map[key];
-  };
+const UserModel = {
+  presentations: [],
+  slides: [],
+  slideShow: [],
+  name: ""
 };
-export { SlideModel, viewModelMap };
+
+const User = {
+  presentations: [],
+  slides: [],
+  slideShow: [],
+  name: ""
+};
+
+const Models = {
+  User,
+  SlideModel
+};
+export default Models;

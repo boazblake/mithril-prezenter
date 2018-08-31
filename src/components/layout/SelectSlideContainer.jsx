@@ -5,10 +5,10 @@ import { contains, without, not, lensProp, over, compose } from "ramda";
 
 import SlideSelectCard from "./../cards/SlideSelectCard.jsx";
 import SlideSelectField from "./../cards/SlideSelectField.jsx";
-import User from "./../../services/user.js";
-import { viewModelMap } from "./../../models/index.js";
+import User from "./../../models/index.js";
+import { lazyMap } from "./../../utils/index.js";
 
-const slidesModel = viewModelMap({
+const slidesModel = lazyMap({
   isSelected: Stream(false),
   position: Stream(0)
 });

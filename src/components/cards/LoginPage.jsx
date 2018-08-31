@@ -1,14 +1,14 @@
-const m = require('mithril');
+const m = require("mithril");
 
-import Task from 'data.task';
-import { compose, pluck, toLower, filter, prop, traverse } from 'ramda';
+import Task from "data.task";
+import { compose, pluck, toLower, filter, prop, traverse } from "ramda";
 
-import Requests from '../../services/Requests.js';
-import UIButton from './../ui/UIButton.jsx';
+import Requests from "../../services/Requests.js";
+import UIButton from "./../ui/UIButton.jsx";
 
 const getPresentationsTask = gists => {
   let presentations = [];
-  let ids = pluck('id', gists);
+  let ids = pluck("id", gists);
   ids.map(id => Requests.getPresentations(id).then(p => presentations.push(p)));
   return Task.of(presentations);
 };
@@ -21,8 +21,8 @@ const updateName = user => e => user.setName(e.target.value);
 const onError = error => console.error(error);
 
 const onSuccess = user => data => {
-  user.setPrezentations(data);
-  m.route.set('/prezentations');
+  user.setPresentations(data);
+  m.route.set("/presentations");
 };
 
 const login = user =>
