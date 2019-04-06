@@ -2,7 +2,9 @@ import m from 'mithril'
 import { assoc } from 'ramda'
 import { saveSlideTask } from './model.js'
 
-const SlidesModal = ({ attrs: { left, pId, slide, toggleModal } }) => {
+const SlidesModal = ({
+  attrs: { left, pId, slide, toggleModal, getSlides, Models },
+}) => {
   const state = {
     errors: '',
     title: '',
@@ -14,7 +16,7 @@ const SlidesModal = ({ attrs: { left, pId, slide, toggleModal } }) => {
   }
 
   const onSuccess = slides => {
-    left(slides)
+    getSlides({ attrs: { Models } })
     return toggleModal()
   }
 

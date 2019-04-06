@@ -32,6 +32,25 @@ import marked from 'marked'
 
 import './style.css'
 
+marked.setOptions({
+  baseUrl: null,
+  breaks: false,
+  gfm: true,
+  headerIds: true,
+  headerPrefix: '',
+  highlight: null,
+  langPrefix: 'language-js',
+  mangle: true,
+  pedantic: false,
+  sanitize: false,
+  sanitizer: null,
+  silent: true,
+  smartLists: true,
+  smartypants: true,
+  tables: true,
+  xhtml: true,
+})
+
 const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
   const onError = task => error => log(`error with ${task}`)(error)
   const onSuccess = _ => getSlides({ attrs: { Models } })

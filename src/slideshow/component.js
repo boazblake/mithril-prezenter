@@ -10,6 +10,25 @@ import {
   animateFadeIn,
 } from '../services/animations.js'
 
+marked.setOptions({
+  baseUrl: null,
+  breaks: false,
+  gfm: true,
+  headerIds: true,
+  headerPrefix: '',
+  highlight: null,
+  langPrefix: 'language-js',
+  mangle: true,
+  pedantic: false,
+  sanitize: false,
+  sanitizer: null,
+  silent: true,
+  smartLists: true,
+  smartypants: true,
+  tables: true,
+  xhtml: true,
+})
+
 const SlideShow = ({ attrs: { Models } }) => {
   const state = {
     cursor: 0,
@@ -19,25 +38,6 @@ const SlideShow = ({ attrs: { Models } }) => {
     size: Models.CurrentPresentation.slideShow().length,
     contents: pluck('content', Models.CurrentPresentation.slideShow()),
   }
-
-  marked.setOptions({
-    baseUrl: null,
-    breaks: false,
-    gfm: true,
-    headerIds: true,
-    headerPrefix: '',
-    highlight: null,
-    langPrefix: 'language-js',
-    mangle: true,
-    pedantic: false,
-    sanitize: true,
-    sanitizer: null,
-    silent: true,
-    smartLists: true,
-    smartypants: true,
-    tables: true,
-    xhtml: true,
-  })
 
   const nextSlide = () => (state.cursor == state.size ? '' : state.cursor++)
 

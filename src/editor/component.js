@@ -1,8 +1,10 @@
 import m from 'mithril'
 import Stream from 'mithril-stream'
-import marked from 'marked'
+import Remarkable from 'remarkable'
 import { loadSlide, editSlide } from './model.js'
 import { log } from '../services/index.js'
+
+const marked = new Remarkable()
 
 const Editor = ({ attrs: Models }) => {
   let state = { presentationId: '', slide: { title: '', content: '', id: '' } }
@@ -92,7 +94,7 @@ const Editor = ({ attrs: Models }) => {
               {
                 style: { height: '60vh', overflow: 'scroll' },
               },
-              m.trust(marked(state.slide.content || ''))
+              m.trust(marked.render(state.slide.content || ''))
             ),
           ]),
         ]),
