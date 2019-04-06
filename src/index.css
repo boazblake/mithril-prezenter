@@ -23,3 +23,55 @@ html {
 	font-family: "Rubik", sans-serif;
 	font-color: white;
 }
+
+.main {
+	display: grid;
+	grid-template-areas: "toolbar" "body"
+}
+
+.container {
+  overflow: scroll;
+  width: 100vw;
+  height: 100vh;
+  padding: 4px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
+
+.card {
+	display: flex;
+	flex-flow:column;
+	justify-content:stretch;
+	/* grid-template-rows: 2fr 4fr 1fr; */
+	/* grid-template-areas: "card-header" "card-body" "card-footer"; */
+	/* max-height: 200px; */
+	min-width: 200px;
+	height: fit-content;
+	margin: 10px;
+	border-radius: 2%;
+	background-color:#ecf0f1;
+	box-shadow: 2px 2px 3px 3px #95a5a6;
+}
+
+.card-header {
+	max-height: 100px;
+	width: 100%;
+	padding: 2px;
+	background-color:#95a5a6;
+}
+
+.card-body {
+	max-height: 200px;
+	width: 100%;
+	padding: 2px;
+	background-color:#95a5a6;
+}
+
+.card-footer {
+	max-height: 100px;
+	width: 100%;
+	padding: 2px;
+	background-color:#95a5a6;
+}

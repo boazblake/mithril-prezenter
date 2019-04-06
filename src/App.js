@@ -45,12 +45,12 @@ export const App = ({ attrs: model }) => {
   return {
     oninit: findPresentations,
     oncreate: ({ dom }) => {
-      const mainStage = dom.querySelector('.main-stage')
+      const main = dom.querySelector('.main')
 
-      m.route(mainStage, '/presentations', makeRoutes(model))
+      m.route(main, '/presentations', makeRoutes(model))
     },
     view: ({ children }) => {
-      return m('.App', [m('.main-stage', children)])
+      return m('.app',[m('.main', children)])
     },
   }
 }

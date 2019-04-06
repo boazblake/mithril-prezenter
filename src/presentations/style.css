@@ -29,8 +29,11 @@
   }
 }
 
-.presentation {
+
+.presentations {
   transition: "ease-in-out";
   animation: fadeIn 2s;
-  overflow: hidden;
 }
+
+
+

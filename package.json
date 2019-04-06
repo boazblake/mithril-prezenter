@@ -37,7 +37,8 @@
 	},
 	"scripts": {
 		"start": "yarn deployPrisma & yarn web",
-		"deployPrisma": "cd mithril-presenter; docker-compose; prisma local start",
+		"deployPrisma": "cd mithril-presenter; docker-compose start;",
+		"killPrismaService": "cd mithril-presenter; docker-compose kill",
 		"jsonQl": "json-graphql-server db.js",
 		"web": "webpack-dev-server --open",
 		"build": "webpack --config webpack.config.js"

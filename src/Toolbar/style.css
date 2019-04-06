@@ -1,0 +1,39 @@
+.toolbar {
+  display: inline-grid;
+  /* grid-template-rows: repeat(1fr); */
+	grid-template-areas: "toolbar-left toolbar-right";
+  line-height: 2;
+  background: #ecf0f1;
+  height: 60px;
+  padding: 2px;
+}
+
+.toolbar-left {
+  grid-area: toolbar-left;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
+
+.toolbar-right {
+  grid-area: toolbar-right;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
+.toolbar-item {
+  background-color: #bdc3c7;
+  margin: 2px;
+  padding: 10px;
+  border-radius:2px;
+  cursor: pointer;
+  transition: all .2s;
+
+}
+
+.toolbar-item:hover {
+  background-color: #6f7375;
+  color: #bdc3c7;
+}

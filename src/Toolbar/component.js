@@ -1,8 +1,5 @@
 import m from 'mithril'
 import {
-  contains,
-  filter,
-  propEq,
   isEmpty,
   length,
   split,
@@ -14,7 +11,7 @@ import { log } from '../services/index.js'
 const toggleModal = model => {
   return [
     m(
-      'a.navbar-item',
+      'a.toolbar-item',
       {
         onclick: () => (model.toggleModal = !model.toggleModal),
       },
@@ -24,7 +21,7 @@ const toggleModal = model => {
 }
 const toPresentations = [
   m(
-    'a.navbar-item',
+    'a.toolbar-item',
     {
       oncreate: m.route.link,
       href: '/presentations',
@@ -35,7 +32,7 @@ const toPresentations = [
 
 const toSlides = model => [
   m(
-    'a.navbar-item',
+    'a.toolbar-item',
     {
       oncreate: m.route.link,
       href: `/presentation/${model.CurrentPresentation.id}/slides`,
@@ -46,7 +43,7 @@ const toSlides = model => [
 
 const toSlideShow = model => [
   m(
-    'a.navbar-item',
+    'a.toolbar-item',
     {
       disabled: isEmpty(length(model.CurrentPresentation.slideShow))
         ? true
@@ -98,15 +95,11 @@ const Toolbar = ({ attrs: { Models } }) => {
   return {
     view: ({ attrs: { Models } }) =>
       m(
-        'nav.navbar is-white',
-        m('.navbar-menu is-active', [
-          // m('.level', [
+        '.toolbar',
           [
-            m('.navbar-start', [navView(Models)(currentPage)]),
-            m('.navbar-end', [actionView(Models)(currentPage)]),
+            m('.toolbar-left', [navView(Models)(currentPage)]),
+            m('.toolbar-right', [actionView(Models)(currentPage)]),
           ],
-          // ]),
-        ])
       ),
   }
 }

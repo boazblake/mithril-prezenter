@@ -31,15 +31,13 @@ const Presentations = ({ attrs: { Models } }) => {
         : '',
 
       m(
-        'section.section column is-6',
+        '.container.presentations',
         {
-          class: 'presentation',
           oncreate: ({ dom }) => animateFadeIn({ dom }),
           onBeforeRemove: (vnode, done) => {
             vnode.dom.addEventListener('animationend', done)
             vnode.dom.style.animation = 'fadeOut 1s'
           },
-          style: { overflow: 'scroll', height: '65vh' },
         },
         [
           Models.Presentations &&
@@ -52,14 +50,6 @@ const Presentations = ({ attrs: { Models } }) => {
               })
             ),
         ]
-      ),
-      m(
-        'section.section column is-6',
-        state.errors
-          ? state.errors.map(error =>
-              m('pre.pre', JSON.stringify(error, null, 2))
-            )
-          : ''
       ),
     ],
   }

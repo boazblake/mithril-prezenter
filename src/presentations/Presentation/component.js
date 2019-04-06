@@ -22,8 +22,8 @@ const Presentation = ({ attrs: { title, id, Models } }) => {
 
   return {
     view: ({ attrs: { title, id, Models } }) =>
-      m('section.level box', [
-        m('div.level-left', [
+      m('.card', [
+        m('div.card-header', [
           m(
             'button.button',
             {
@@ -31,12 +31,16 @@ const Presentation = ({ attrs: { title, id, Models } }) => {
             },
             title
           ),
-        ]),
-        m('div.level-right', [
           m('button.delete', {
             style: { 'background-color': '#e74c3c' },
             onclick: () => removePresTask(id),
           }),
+        ]),
+        m('div.card-body', [
+
+        ]),
+        m('div.card-footer', [
+
         ]),
       ]),
   }
