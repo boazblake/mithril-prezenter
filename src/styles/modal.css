@@ -1,0 +1,37 @@
+.modal-container {
+  background: rgba(44, 62, 80,.8);
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+}
+
+.modal-label {
+
+}
+
+.modal-input {
+
+}
+
+.modal-close {
+  width: 200px;
+  height: 40px;
+  background: white;
+}
+
+.modal-close:before {
+  content: 'Cancel'
+}
+
+.modal-saveBtn {
+
+}

@@ -2,14 +2,10 @@ import m from 'mithril'
 import Task from 'data.task'
 import { log, makeQuery } from '../../services/index.js'
 import {
-  animateEntrance,
-  animateExit,
   animateFadeIn,
   animateFadeOut,
-  animeEntrance,
 } from '../../services/animations.js'
 import { take, prop } from 'ramda'
-import '../style.css'
 import {
   updateSlideDragStart,
   updateSlideDragEnd,
@@ -63,9 +59,9 @@ const Slide = ({ attrs: { getSlides, Models, s, key, state } }) => {
   return {
     oncreate: ({ dom }) => animateFadeIn({ dom }),
     onBeforeRemove: ({ dom }) => animateFadeOut({ dom }),
-    view: ({ attrs: { getSlides, Models, s, key, state } }) =>
+    view: ({ attrs: { s, state } }) =>
       m(
-        'section.level box',
+        '.card',
         {
           id: s.id,
           draggable: true,
@@ -73,25 +69,19 @@ const Slide = ({ attrs: { getSlides, Models, s, key, state } }) => {
           ondragend: handleDragEnd,
         },
         [
-          m('div.level-left', [
-            m(
-              'a.button',
-              {
-                onclick: () =>
-                  m.route.set(`/edit/${state.presentationId}/slide/${s.id}`),
-              },
-              [
-                m('span', take(15, s.title)),
-                m('span.icon is-small', [m('i.fas fa-edit')]),
-              ]
-            ),
-          ]),
-          m('div.level-right', [
-            m('button.delete', {
-              style: { 'background-color': '#e74c3c' },
+          m('div.card-header', [
+            m( 'h1.title', m('span', take(15, s.title))),
+            m('button.card-delete', {
               onclick: () => removeSlideTask(s.id),
             }),
           ]),
+          m('.card-footer', m('a.card-btn',{
+              onclick: () =>
+                m.route.set(`/edit/${state.presentationId}/slide/${s.id}`),
+            },
+              [
+                m('span.icon is-small', ['Edit ', m('i.fas fa-edit')]),
+              ]))
         ]
       ),
   }

@@ -1,6 +1,4 @@
-import m from 'mithril'
 import Stream from 'mithril-stream'
-import { filter } from 'ramda'
 
 const SlideModel = {
   title: '',
@@ -25,7 +23,15 @@ const CurrentPresentation = {
   slideShow: Stream([]),
   Slides,
 }
+
+const getProfile = (w)  => {
+  if (w < 668) return 'phone'
+  if (w < 920) return 'tablet'
+  return 'desktop'
+}
+
 const Models = {
+  profile:  getProfile(window.innerWidth),
   SlideShowStruct,
   Presentations,
   CurrentPresentation,

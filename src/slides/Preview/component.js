@@ -1,36 +1,26 @@
 import m from 'mithril'
-import Task from 'data.task'
 import {
-  traverse,
   concat,
   eqProps,
-  clone,
   compose,
   filter,
   map,
-  prop,
   propEq,
   head,
-  reverse,
 } from 'ramda'
 import { log } from '../../services/index.js'
 import {
-  animateEntrance,
   animateExit,
   animateFadeIn,
-  animateFadeOut,
 } from '../../services/animations.js'
 import {
-  forLess,
   forGreater,
   reduceOrder,
   updateRemoveSlide,
   updateSlideTask,
 } from '../model.js'
-import { getQlTask } from '../../services/requests.js'
 import marked from 'marked'
 
-import './style.css'
 
 marked.setOptions({
   baseUrl: null,
@@ -63,7 +53,6 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
   }
 
   const removeSlideTask = s => {
-    let head = filter(forLess(s), state.right())
     let tail = compose(map(reduceOrder), filter(forGreater(s)))(state.right())
     let removeSlide = updateRemoveSlide(s)
 
@@ -73,7 +62,6 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
   }
 
   const handleDragStart = ev => {
-    // ev.preventDefault()
     ev.target.style.opacity = '0.4'
     ev.dataTransfer.effectAllowed = 'move'
     ev.dataTransfer.setData('text/plain', 'preview')
@@ -82,7 +70,6 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
 
   const handleDragOver = ev => {
     ev.preventDefault()
-    // return console.log('over previewDrag', state.previewDrag)
 
     if (state.previewDrag.drag) state.previewDrag.drop = s
   }
@@ -119,88 +106,43 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
   return {
     oncreate: ({ dom }) => animateFadeIn({ dom }),
     onBeforeRemove: ({ dom }) => animateExit({ dom }),
-    view: ({ attrs: { getSlides, Models, s, key, state } }) => {
-      return m(
-        'section.box',
-        {
-          draggable: true,
-          ondragstart: handleDragStart,
-          ondragend: handleDragEnd,
-          ondragover: handleDragOver,
-          ondrop: handleDrop,
-          ondragleave: handleDragLeave,
-          style: {
-            overflow: 'hidden',
-            display: 'inline-block',
-            width: '200px',
-            height: '200px',
-            margin: '12px',
-            opacity:
-              state.previewDrag.drop && state.previewDrag.drop.id == s.id
-                ? 0.4
-                : 1,
-          },
+    view: ({ attrs: { s, state } }) =>
+      m('.card.preview', {
+        draggable: true,
+        ondragstart: handleDragStart,
+        ondragend: handleDragEnd,
+        ondragover: handleDragOver,
+        ondrop: handleDrop,
+        ondragleave: handleDragLeave,
+        onBeforeRemove: ({ dom }) => animateExit({ dom }),
+        style: {
+          opacity:
+            state.previewDrag.drop && state.previewDrag.drop.id == s.id
+              ? 0.4
+              : 1,
         },
-        [
-          m(
-            'article.article',
-            {
-              onBeforeRemove: ({ dom }) => animateExit({ dom }),
-              style: {
-                position: 'relative',
-                top: 0,
-                'z-index': 1,
-              },
-            },
-            [
-              m(
-                'a.button remove-preview',
-                {
-                  'z-index': 1,
-                  onclick: () => removeSlideTask(s),
-                },
-                [
-                  m('span.icon is-small', [
-                    m('i.fas fa-sign-out-alt', {
-                      style: {
-                        color: 'white',
-                        transform: 'rotate(180deg)',
-                      },
-                    }),
-                  ]),
-                ]
-              ),
-            ]
-          ),
+      },
+      [
+        m('.card-header',
           [
-            m('span.icon is-small', [
-              m('span.fa-stack ', [
-                m(
-                  'span.fa-stack-1',
-                  {
-                    style: {
-                      position: 'relative',
-                      'margin-left': '75px',
-                      top: '-50px',
-                      color: '#e67e22',
-                      'font-size': '6rem',
-                      'z-index': 1,
-                    },
-                  },
-                  s.order
-                ),
-              ]),
-            ]),
-          ],
-          m(
-            'article.article',
-            { style: { position: 'relative', top: '-155px', 'z-index': 0 } },
-            [m.trust(marked(s.content))]
+            m(
+            'span.slidePosition',
+            s.order
           ),
-        ]
-      )
-    },
-  }
+          m(
+            'a.preview-delete.card-delete',
+            {
+              'z-index': 1,
+              onclick: () => removeSlideTask(s),
+            },
+          )
+          ]
+          ),
+        m('.card-body', [
+            m.trust(marked(s.content))
+        ]),
+      ])
+    }
 }
 
 export default Preview

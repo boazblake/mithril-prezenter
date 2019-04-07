@@ -1,16 +1,11 @@
-import { log } from '../services/index.js'
 import m from 'mithril'
 import { clone } from 'ramda'
 import {
-  animateEntrance,
-  animateExit,
   animateFadeIn,
-  animateFadeOut,
 } from '../services/animations.js'
 import PresentationModal from './presentationModal.js'
 import Presentation from './Presentation/component.js'
 
-import './style.css'
 
 const Presentations = ({ attrs: { Models } }) => {
   const state = {

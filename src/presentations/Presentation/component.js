@@ -1,6 +1,6 @@
 import m from 'mithril'
 import { log } from '../../services/index.js'
-import { without, propEq } from 'ramda'
+import { without } from 'ramda'
 import { deletePresentationsTask } from '../model.js'
 import Task from 'data.task'
 
@@ -25,14 +25,13 @@ const Presentation = ({ attrs: { title, id, Models } }) => {
       m('.card', [
         m('div.card-header', [
           m(
-            'button.button',
+            'button.card-btn',
             {
               onclick: () => m.route.set(`/presentation/${id}/slides`),
             },
             title
           ),
-          m('button.delete', {
-            style: { 'background-color': '#e74c3c' },
+          m('button.card-delete', {
             onclick: () => removePresTask(id),
           }),
         ]),

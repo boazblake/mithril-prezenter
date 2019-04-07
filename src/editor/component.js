@@ -1,12 +1,10 @@
 import m from 'mithril'
-import Stream from 'mithril-stream'
 import Remarkable from 'remarkable'
 import { loadSlide, editSlide } from './model.js'
-import { log } from '../services/index.js'
 
 const marked = new Remarkable()
 
-const Editor = ({ attrs: Models }) => {
+const Editor = ( ) => {
   let state = { presentationId: '', slide: { title: '', content: '', id: '' } }
 
   const toSlides = _ =>
@@ -18,7 +16,7 @@ const Editor = ({ attrs: Models }) => {
     state.slide = slide
   }
 
-  const getSlide = ({ attrs: { Models } }) => {
+  const getSlide = ( ) => {
     state.slide.id = m.route.param('id')
     state.presentationId = m.route.param('pid')
     return loadSlide(state.slide.id).fork(onError, onSuccess)
@@ -36,69 +34,42 @@ const Editor = ({ attrs: Models }) => {
   return {
     oncreate: getSlide,
     view: ({ attrs: { Models } }) =>
-      m('.article', [
-        m('section.section columns is-multiline', [
-          m('.column is-6', { style: { overflow: 'scroll', height: '65vh' } }, [
-            m('.field', [
-              m('p', [
-                m('input.input is-large', {
-                  type: 'text',
-                  placeholder: 'Slide Title',
-                  oninput: m.withAttr('value', updateTitle),
-                  value: state.slide.title,
-                }),
-              ]),
+        m('.container', [
+          m('.editor-left.card',  [
+            m('.card-header', [
+              m('input.editor-input', {
+                type: 'text',
+                placeholder: 'Slide Title',
+                oninput: m.withAttr('value', updateTitle),
+                value: state.slide.title,
+              }),
             ]),
-            m('.field', [
-              m('p', [
-                m('textarea.textarea', {
-                  oninput: m.withAttr('value', updateContents),
-                  value: state.slide.content,
-                  style: { height: '45vh' },
-                }),
-              ]),
-            ]),
-            m('.field is-grouped', [
+            m('textarea.editor-text', {
+              oninput: m.withAttr('value', updateContents),
+              value: state.slide.content,
+            }),
+            m('.card-footer', [
               m(
-                '.control',
-                { style: { width: '50%', display: 'inline-block' } },
-                [
-                  m(
-                    'button.button is-dark is-outlined is-link',
-                    {
-                      style: { width: '100%', display: 'inline-block' },
-                      onclick: save,
-                    },
-                    'Save'
-                  ),
+                'button.card-btn',
+                {
+                  onclick: save,
+                },
+                'Save'
+              ),
+              m(
+                'button.card-btn',
+                {
+                  onclick: toSlides,
+                },
+                'Cancel'
+              )
                 ]
               ),
-              m(
-                '.control',
-                { style: { width: '50%', display: 'inline-block' } },
-
-                m(
-                  'button.button is-dark is-outlined is-link',
-                  {
-                    style: { width: '100%', display: 'inline-block' },
-                    onclick: toSlides,
-                  },
-                  'Cancel'
-                )
-              ),
             ]),
-          ]),
-          m('article.column is-6', [
-            m(
-              '.box',
-              {
-                style: { height: '60vh', overflow: 'scroll' },
-              },
+          m('.editor-right',
               m.trust(marked.render(state.slide.content || ''))
             ),
-          ]),
         ]),
-      ]),
   }
 }
 

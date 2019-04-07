@@ -22,26 +22,28 @@ const PresentationModal = ({ attrs }) => {
 
 	return {
 		view: () =>
-			m('article.modal is-active', [
-				m('.modal-background'),
-				m('.modal-content', [
-					m('fieldset.fieldset hero box', [
-						m('label.label', 'Presentation Name'),
-						m('input.input', {
-							type: 'text',
-							onchange: m.withAttr('value', (v) => (attrs.state.title = v)),
-						}),
-						m('button.button', { onclick: save }, 'save presentation'),
+			m('article.modal-container', [
+				m('.card',[
+					m('.card-header', m('button.card-delete', {
+						onclick: () => {
+							return attrs.toggleModal()
+						},
+						'aria-label': 'close',
+					})),
+					m('.card-body', [
+						m('fieldset', [
+							m('label.modal-label', 'Presentation Name'),
+							m('input.modal-input', {
+								type: 'text',
+								onchange: m.withAttr('value', (v) => (attrs.state.title = v)),
+							}),
+						]),
 					]),
-				]),
-				m('button.modal-close is-large', {
-					onclick: () => {
-						return attrs.toggleModal()
-					},
-					'aria-label': 'close',
-				}),
+					m('.card-footer', m('button.card-btn', { onclick: save }, 'save presentation'))
+				])
 			]),
 	}
 }
 
 export default PresentationModal
+

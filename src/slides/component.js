@@ -8,7 +8,6 @@ import Preview from './Preview/component.js'
 import { loadSlides } from './model.js'
 import { log } from '../services/index.js'
 
-import './style.css'
 
 const Slides = ({ attrs: { Models } }) => {
 	const state = {
@@ -91,9 +90,9 @@ const Slides = ({ attrs: { Models } }) => {
 						pId: state.presentationId,
 					})
 				: '',
-			m('section.section', [
+			m('.container', [
 				m(
-					'section.left-drag',
+					'aside.left-drag',
 					{
 						oncreate: ({ dom }) => animateEntrance({ dom }),
 						onBeforeRemove: (vnode, done) => {

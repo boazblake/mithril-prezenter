@@ -1,0 +1,28 @@
+.editor-left {
+  overflow:scroll;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-content: center;
+  height: 85vh;
+  width: 100%;
+  padding: 2px;
+}
+
+.editor-right {
+  background: white;
+  width: 100%;
+  overflow:scroll;
+  height: 85vh;
+  padding: 10px;
+}
+
+.editor-input {
+  width: 100%;
+  line-height: 20px;
+}
+
+.editor-text {
+  height: 500px;
+  margin-bottom: 10px;
+}

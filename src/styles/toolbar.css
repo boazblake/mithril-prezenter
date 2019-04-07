@@ -1,14 +1,13 @@
 .toolbar {
-  display: inline-grid;
-  /* grid-template-rows: repeat(1fr); */
-	grid-template-areas: "toolbar-left toolbar-right";
+  display: flex;
+  flex-flow: column;
   line-height: 2;
   background: #ecf0f1;
-  height: 60px;
   padding: 2px;
 }
 
 .toolbar-left {
+  order: 1;
   grid-area: toolbar-left;
   display: flex;
   flex-flow: wrap;
@@ -17,6 +16,7 @@
 
 
 .toolbar-right {
+  order: 2;
   grid-area: toolbar-right;
   display: flex;
   flex-flow: wrap;
@@ -36,4 +36,14 @@
 .toolbar-item:hover {
   background-color: #6f7375;
   color: #bdc3c7;
+}
+
+@media only screen and (min-width: 600px) {
+  .toolbar {
+    display: inline-grid;
+    grid-template-areas: "toolbar-left toolbar-right";
+    line-height: 2;
+    background: #ecf0f1;
+    padding: 2px;
+  }
 }

@@ -6,7 +6,7 @@ import {
   view,
   lensProp,
 } from 'ramda'
-import { log } from '../services/index.js'
+
 
 const toggleModal = model => {
   return [
@@ -94,13 +94,13 @@ const Toolbar = ({ attrs: { Models } }) => {
   const currentPage = view(lensProp(1), split('/', m.route.get()))
   return {
     view: ({ attrs: { Models } }) =>
-      m(
+       m(
         '.toolbar',
-          [
-            m('.toolbar-left', [navView(Models)(currentPage)]),
-            m('.toolbar-right', [actionView(Models)(currentPage)]),
-          ],
-      ),
+        [
+          m('.toolbar-left', [navView(Models)(currentPage)]),
+          m('.toolbar-right', [actionView(Models)(currentPage)]),
+        ],
+        ),
   }
 }
 

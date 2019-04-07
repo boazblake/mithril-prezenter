@@ -28,25 +28,25 @@ const SlidesModal = ({
 
   return {
     view: () =>
-      m('.modal is-active', [
-        m('.modal-background'),
-        m('.modal-content', [
-          m('fieldset.fieldset', [
-            m('legend.legend', 'Add a Slide'),
-            m('label.label', 'Slide title'),
-            m('input.input', {
-              type: 'text',
-              onchange: m.withAttr('value', v => (state.title = v)),
-            }),
-            m('button.button', { onclick: save }, 'Create Slide'),
+      m('article.modal-container', [
+        m('.card', [
+          m('.card-header', m('button.card-delete', {
+            onclick: () => {
+              return toggleModal()
+            },
+            'aria-label': 'close',
+          })),
+          m('.card-body', [
+            m('fieldset', [
+              m('label.modal-label', 'Slide Title'),
+              m('input.modal-input', {
+                type: 'text',
+                onchange: m.withAttr('value', (v) => (state.title = v)),
+              }),
+            ]),
           ]),
-        ]),
-        m('button.modal-close is-large', {
-          onclick: () => {
-            return toggleModal()
-          },
-          'aria-label': 'close',
-        }),
+          m('.card-footer', m('button.card-btn', { onclick: save }, 'save slide'))
+        ])
       ]),
   }
 }

@@ -1,5 +1,4 @@
 import { getQlTask } from '../services/requests.js'
-import { makeQuery } from '../services/index.js'
 import { path } from 'ramda'
 
 export const loadSlide = id => {
