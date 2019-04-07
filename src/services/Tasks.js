@@ -14,7 +14,6 @@ export const postQl = query =>
         url: `${onlineUrl}`,
         withCredentials: false,
         data: makeQuery(query),
-        headers: { 'Content-Type': 'application/json' },
       })
       .then(res, rej)
   )
@@ -27,7 +26,6 @@ const postTask = url => ({ dto }) =>
         url: `${onlineUrl}/${url}`,
         data: dto,
         withCredentials: false,
-        headers: { 'Content-Type': 'application/json' },
       })
       .then(res, rej)
   )
@@ -40,7 +38,6 @@ const putTask = url => ({ dto }) =>
         url: `${onlineUrl}/${url}`,
         data: dto,
         withCredentials: false,
-        headers: { 'Content-Type': 'application/json' },
       })
       .then(res, rej)
   )
@@ -52,7 +49,6 @@ const getTask = url =>
         method: 'GET',
         url: `${onlineUrl}/${url}`,
         withCredentials: false,
-        headers: { 'Content-Type': 'application/json' },
       })
       .then(res, rej)
   )
@@ -64,7 +60,6 @@ const deleteTask = url => id =>
         method: 'DELETE',
         url: `${onlineUrl}/${url}/${id}`,
         withCredentials: false,
-        headers: { 'Content-Type': 'application/json' },
       })
       .then(res, rej)
   )

@@ -1,0 +1,15 @@
+.slideshow{
+  height: 90vh;
+  width: 96vw;
+  margin: 0 auto;
+  background: white;
+  overflow: scroll;
+  padding:20px;
+}
+
+
+.slideshow > pre {
+  padding: 10px;
+  background: rgba(44, 62, 80,1);
+  color: rgba(39, 174, 96,1.0);
+}

@@ -35,7 +35,7 @@ const PresentationModal = ({ attrs }) => {
 							m('label.modal-label', 'Presentation Name'),
 							m('input.modal-input', {
 								type: 'text',
-								onchange: m.withAttr('value', (v) => (attrs.state.title = v)),
+								onchange: e => attrs.state.title = e.target.value,
 							}),
 						]),
 					]),

@@ -16,24 +16,19 @@
 		"html-webpack-plugin": "^3.0.4",
 		"style-loader": "^0.20.2",
 		"webpack": "^4.0.1",
-		"webpack-cli": "^2.0.9",
+		"webpack-cli": "3.1.1",
 		"webpack-dev-server": "^3.1.0"
 	},
 	"dependencies": {
 		"animejs": "^3.0.1",
-		"bulma": "^0.7.2",
 		"data.maybe": "^1.2.3",
 		"data.task": "^3.1.2",
-		"feather-icons": "^4.9.0",
 		"json-graphql-server": "^2.1.2",
 		"json-server-extension": "^1.1.2",
-		"marked": "^0.5.1",
 		"mithril": "^2.0.0-rc.1",
 		"mithril-stream": "^1.1.0",
 		"ramda": "^0.25.0",
-		"remarkable": "^1.7.1",
-		"sortablejs": "^1.7.0",
-		"stacktrace-js": "^2.0.0"
+		"remarkable": "^1.7.1"
 	},
 	"scripts": {
 		"start": "yarn deployPrisma & yarn web",

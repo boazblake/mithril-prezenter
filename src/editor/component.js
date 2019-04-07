@@ -1,8 +1,18 @@
 import m from 'mithril'
-import Remarkable from 'remarkable'
 import { loadSlide, editSlide } from './model.js'
+import Remarkable from 'remarkable'
+import hljs from 'highlight.js'
 
-const marked = new Remarkable()
+const md = new Remarkable('full', {
+  html: false,
+  xhtmlOut: false,
+  breaks: false,
+  langPrefix: 'language-',
+  linkify: true,
+  linkTarget: '',
+  typographer: false,
+  quotes: '“”‘’',
+});
 
 const Editor = ( ) => {
   let state = { presentationId: '', slide: { title: '', content: '', id: '' } }
@@ -22,8 +32,9 @@ const Editor = ( ) => {
     return loadSlide(state.slide.id).fork(onError, onSuccess)
   }
 
-  const updateTitle = text => (state.slide.title = text)
-  const updateContents = text => (state.slide.content = text)
+  const updateInput = input => (e) =>
+    state.slide[input] = e.target.value
+
 
   const save = e => {
     e.preventDefault()
@@ -40,12 +51,12 @@ const Editor = ( ) => {
               m('input.editor-input', {
                 type: 'text',
                 placeholder: 'Slide Title',
-                oninput: m.withAttr('value', updateTitle),
+                oninput: updateInput('title'),
                 value: state.slide.title,
               }),
             ]),
             m('textarea.editor-text', {
-              oninput: m.withAttr('value', updateContents),
+              oninput: updateInput('content'),
               value: state.slide.content,
             }),
             m('.card-footer', [
@@ -67,7 +78,7 @@ const Editor = ( ) => {
               ),
             ]),
           m('.editor-right',
-              m.trust(marked.render(state.slide.content || ''))
+              m.trust(md.render(state.slide.content || ''))
             ),
         ]),
   }

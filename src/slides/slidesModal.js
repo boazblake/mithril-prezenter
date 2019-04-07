@@ -41,7 +41,7 @@ const SlidesModal = ({
               m('label.modal-label', 'Slide Title'),
               m('input.modal-input', {
                 type: 'text',
-                onchange: m.withAttr('value', (v) => (state.title = v)),
+                onchange: e => state.title = e.target.value ,
               }),
             ]),
           ]),

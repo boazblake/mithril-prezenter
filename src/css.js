@@ -1,5 +1,6 @@
 export * from './styles/index.css'
 
+export * from './styles/slideshow.css'
 export * from './styles/editor.css'
 export * from './styles/modal.css'
 export * from './styles/preview.css'
