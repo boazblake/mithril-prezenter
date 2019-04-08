@@ -24,6 +24,7 @@
 }
 
 .toolbar-item {
+  text-decoration: none;
   background-color: #bdc3c7;
   margin: 2px;
   padding: 10px;

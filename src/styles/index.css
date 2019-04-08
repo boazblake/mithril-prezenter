@@ -1,6 +1,7 @@
 /* index.css */
 
 @import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Inconsolata");
 
 * {
 	box-sizing: border-box;
@@ -17,8 +18,6 @@ html {
 #app {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
-	width: 100vw;
 	background: #003863;
 	font-family: "Rubik", sans-serif;
 }
@@ -38,7 +37,6 @@ html {
   justify-content: flex-start;
 	align-content: flex-start;
 }
-
 
 .card {
 	position: relative;
@@ -127,4 +125,21 @@ html {
 .card-btn:hover {
   background-color: #6f7375;
   color: #bdc3c7;
+}
+
+.language-js {
+	display: block;
+	padding: 20px;
+	font-size: 17px;
+	line-height: 1.2em;
+	background: rgba(44, 62, 80,1);
+	color: rgba(39, 174, 96,1.0);
+	border-radius: 6px;
+	font-family: Inconsolata ;
+}
+
+.language-html {
+  background: rgba(44, 62, 80,1);
+	background:linear-gradient(180deg,#ccc 0,#ccc 1.2em,#eee 0);
+  color: rgba(41, 128, 185,1.0);
 }

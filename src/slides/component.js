@@ -114,15 +114,12 @@ const Slides = ({ attrs: { Models } }) => {
 				),
 
 				m(
-					'section.right-drag',
+					`section.right-drag${state.slideDrag.dragging ? '.isDragging' : ''}`,
 					{
 						oncreate: ({ dom }) => animateEntrance({ dom }),
 						onBeforeRemove: (vnode, done) => {
 							vnode.dom.addEventListener('animationend', done)
 							vnode.dom.style.animation = 'fadeOut 1s'
-						},
-						style: {
-							border: state.slideDrag.dragging ? '1px dashed #ecf0f1' : '1px dashed #95a5a6',
 						},
 						ondragleave: handleDragLeave,
 						ondrop: handleDrop,

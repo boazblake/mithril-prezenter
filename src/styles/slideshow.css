@@ -6,10 +6,3 @@
   overflow: scroll;
   padding:20px;
 }
-
-
-.slideshow > pre {
-  padding: 10px;
-  background: rgba(44, 62, 80,1);
-  color: rgba(39, 174, 96,1.0);
-}
