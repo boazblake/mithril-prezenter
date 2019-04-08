@@ -1,7 +1,6 @@
 import m from 'mithril'
 import Stream from 'mithril-stream'
-import { map, clone, filter, propEq, prop, without, concat, head, sortBy } from 'ramda'
-import { animateEntrance } from '../services/animations.js'
+import { clone, filter, propEq, prop, without, concat, head, sortBy } from 'ramda'
 import SlidesModal from './slidesModal.js'
 import Slide from './Slide/component.js'
 import Preview from './Preview/component.js'
@@ -94,7 +93,6 @@ const Slides = ({ attrs: { Models } }) => {
 				m(
 					'aside.left-drag',
 					{
-						oncreate: ({ dom }) => animateEntrance({ dom }),
 						onBeforeRemove: (vnode, done) => {
 							vnode.dom.addEventListener('animationend', done)
 							vnode.dom.style.animation = 'fadeOut 1s'
@@ -116,7 +114,6 @@ const Slides = ({ attrs: { Models } }) => {
 				m(
 					`section.right-drag${state.slideDrag.dragging ? '.isDragging' : ''}`,
 					{
-						oncreate: ({ dom }) => animateEntrance({ dom }),
 						onBeforeRemove: (vnode, done) => {
 							vnode.dom.addEventListener('animationend', done)
 							vnode.dom.style.animation = 'fadeOut 1s'
@@ -128,7 +125,6 @@ const Slides = ({ attrs: { Models } }) => {
 					},
 					state.right().map((s) => {
 						return m(Preview, {
-							oncreate: animateEntrance,
 							key: s.id,
 							Models,
 							getSlides,

@@ -1,10 +1,6 @@
 import m from 'mithril'
 import Task from 'data.task'
 import { log, makeQuery } from '../../services/index.js'
-import {
-  animateFadeIn,
-  animateFadeOut,
-} from '../../services/animations.js'
 import { take, prop } from 'ramda'
 import {
   updateSlideDragStart,
@@ -57,8 +53,6 @@ const Slide = ({ attrs: { getSlides, Models, s, key, state } }) => {
   }
 
   return {
-    oncreate: ({ dom }) => animateFadeIn({ dom }),
-    onBeforeRemove: ({ dom }) => animateFadeOut({ dom }),
     view: ({ attrs: { s, state } }) =>
       m(
         '.card',
@@ -79,9 +73,8 @@ const Slide = ({ attrs: { getSlides, Models, s, key, state } }) => {
               onclick: () =>
                 m.route.set(`/edit/${state.presentationId}/slide/${s.id}`),
             },
-              [
-                m('span.icon is-small', ['Edit ', m('i.fas fa-edit')]),
-              ]))
+                m('i.fas fa-edit'),
+              ))
         ]
       ),
   }

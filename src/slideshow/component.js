@@ -1,10 +1,5 @@
 import m from 'mithril'
 import { pluck } from 'ramda'
-import {
-  animateEntrance,
-  animateExit,
-  animateFadeIn,
-} from '../services/animations.js'
 import Remarkable from 'remarkable'
 
 const md = new Remarkable('full', {
@@ -51,15 +46,17 @@ const SlideShow = ({ attrs: { Models } }) => {
       return m(
         '.slideshow',
         {
-          onupdate: ({ dom }) => animateFadeIn({ dom }),
-          oncreate: ({ dom }) => animateEntrance({ dom }),
-          onBeforeRemove: ({ dom }) => animateExit({ dom }),
           tabindex: 0,
           onkeyup: ({ key }) => {
             changeSlide(key)
           },
         },
-        m.trust(md.render(state.contents[state.cursor]) || '~ FIN ~')
+          m('.slidecard',
+            { onupdate: ({ dom }) => {
+              dom.style.animation = "stretchLeft 1s ease-in-out"
+              return dom
+            }},
+          m.trust(md.render(state.contents[state.cursor]) || '~ FIN ~'))
       )
     },
   }

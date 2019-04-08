@@ -25,7 +25,7 @@ const Presentation = ({ attrs: { title, id, Models } }) => {
       m('.card', [
         m('div.card-header', [
           m(
-            'button.card-btn',
+            'button.card-btn.full-width',
             {
               onclick: () => m.route.set(`/presentation/${id}/slides`),
             },

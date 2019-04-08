@@ -21,6 +21,5 @@
 
 
 .presentations {
-  transition: "ease-in-out";
-  animation: fadeIn 2s;
+  animation: fadeIn .5s ease-in-out;
 }

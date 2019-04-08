@@ -25,18 +25,17 @@
 
 .toolbar-item {
   text-decoration: none;
-  background-color: #bdc3c7;
+  color: rgba(44, 62, 80,1);
   margin: 2px;
   padding: 10px;
   border-radius:2px;
   cursor: pointer;
-  transition: all .2s;
-
+  transition: all .5s;
 }
 
 .toolbar-item:hover {
-  background-color: #6f7375;
-  color: #bdc3c7;
+  background-color: rgba(44, 62, 80,1);
+  color: rgba(236, 240, 241,1.0);
 }
 
 @media only screen and (min-width: 600px) {
@@ -44,7 +43,7 @@
     display: inline-grid;
     grid-template-areas: "toolbar-left toolbar-right";
     line-height: 2;
-    background: #ecf0f1;
+    background: rgba(236, 240, 241,1.0);
     padding: 2px;
   }
 }

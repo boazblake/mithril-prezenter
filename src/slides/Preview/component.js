@@ -105,7 +105,6 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
 
   return {
     oncreate: ({ dom }) => animateFadeIn({ dom }),
-    onBeforeRemove: ({ dom }) => animateExit({ dom }),
     view: ({ attrs: { s, state } }) =>
       m('.card.preview', {
         draggable: true,
@@ -114,7 +113,6 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
         ondragover: handleDragOver,
         ondrop: handleDrop,
         ondragleave: handleDragLeave,
-        onBeforeRemove: ({ dom }) => animateExit({ dom }),
         style: {
           opacity:
             state.previewDrag.drop && state.previewDrag.drop.id == s.id

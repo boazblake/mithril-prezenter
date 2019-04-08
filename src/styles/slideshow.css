@@ -1,8 +1,12 @@
-.slideshow{
+.slideshow {
   height: 90vh;
   width: 96vw;
   margin: 0 auto;
   background: white;
   overflow: scroll;
-  padding:20px;
+  padding: 20px;
+}
+
+.slidecard {
+  animation: stretchRight 1s ease-in-out;
 }

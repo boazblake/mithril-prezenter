@@ -1,5 +1,5 @@
 export * from './styles/index.css'
-
+export * from './styles/animations.css'
 export * from './styles/slideshow.css'
 export * from './styles/editor.css'
 export * from './styles/modal.css'

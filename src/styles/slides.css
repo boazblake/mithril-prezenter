@@ -1,6 +1,7 @@
 
 .container {
   justify-content: space-evenly;
+  animation: fadeIn .5s ease-in-out;
 }
 
 .left-drag {
@@ -9,9 +10,6 @@
   display: flex;
   flex-flow: column;
   order: 1;
-  min-height: 100px;
-  box-shadow: inset 0 0 100px #000000;
-  margin-bottom: 10px;
 }
 
 .left-drag .card:hover {
@@ -21,20 +19,17 @@
 .right-drag {
   order: 2;
   grid-area: right-drag;
-  box-shadow: inset 0 0 100px #000000;
-  /* border: 1px dashed #ecf0f1; */
   overflow: scroll;
   flex-flow: wrap;
   display: flex;
-  min-height: 200px;
   min-width: 100%;
 }
 
 .isDragging {
-  /* border: 1px dashed #ecf0f1; */
-  background: rgba(236, 240, 241,0.3);
-  box-shadow: inset 0 0 10px #000000;
+  background: rgba(44, 62, 80,0.3);
+  box-shadow: inset 0 0 2px rgba(44, 62, 80,1);
 }
+
 
 .drop {
   cursor:drop;
