@@ -1,5 +1,5 @@
 .editor-left {
-  overflow:scroll;
+  overflow: scroll;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -9,12 +9,24 @@
   padding: 2px;
 }
 
+.editor-left.card > .card-footer > .card-btn {
+  width: 48%;
+}
+
 .editor-right {
   background: white;
-  width: 100%;
-  overflow:scroll;
+  border: 1px dashed green;
+  width: 90%;
+  overflow-y: scroll;
   height: 85vh;
   padding: 10px;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+}
+
+.editor-right * {
+  font-weight: 100;
 }
 
 .editor-input {

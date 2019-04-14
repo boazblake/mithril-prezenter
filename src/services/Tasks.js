@@ -1,64 +1,62 @@
-import m from 'mithril'
-import Task from 'data.task'
-import { makeQuery } from './index.js'
-import {onlineUrl} from '../../secret.js'
+import m from "mithril"
+import Task from "data.task"
+import { makeQuery } from "./index.js"
+import { onlineUrl } from "../../secret.js"
 
-const baseUrl = 'http://localhost:4466/'
-
-export const postQl = query =>
+export const postQl = (query) =>
   new Task((rej, res) =>
     m
       .request({
-        method: 'POST',
+        method: "POST",
         url: `${onlineUrl}`,
         withCredentials: false,
-        data: makeQuery(query),
+        data: makeQuery(query)
       })
       .then(res, rej)
   )
 
-const postTask = url => ({ dto }) =>
+const postTask = (url) => ({ dto }) =>
   new Task((rej, res) =>
     m
       .request({
-        method: 'POST',
+        method: "POST",
         url: `${onlineUrl}/${url}`,
         data: dto,
-        withCredentials: false,
+        withCredentials: false
       })
       .then(res, rej)
   )
 
-const putTask = url => ({ dto }) =>
+const putTask = (url) => ({ dto }) =>
   new Task((rej, res) =>
     m
       .request({
-        method: 'PUT',
+        method: "PUT",
         url: `${onlineUrl}/${url}`,
         data: dto,
-        withCredentials: false,
+        withCredentials: false
       })
       .then(res, rej)
   )
 
-const getTask = url =>
+const getTask = (url) =>
   new Task((rej, res) =>
     m
       .request({
-        method: 'GET',
+        method: "GET",
         url: `${onlineUrl}/${url}`,
-        withCredentials: false,
+        withCredentials: false
       })
       .then(res, rej)
   )
 
-const deleteTask = url => id =>
+const deleteTask = (url) => (id) =>
   new Task((rej, res) =>
     m
       .request({
-        method: 'DELETE',
+        method: "DELETE",
         url: `${onlineUrl}/${url}/${id}`,
-        withCredentials: false,
+        withCredentials: false
       })
       .then(res, rej)
   )

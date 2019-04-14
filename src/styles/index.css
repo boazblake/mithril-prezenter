@@ -4,119 +4,119 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata");
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body,
 html {
-	height: 100vh;
-	width: 100vw;
-	padding: 0;
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-	font-family: "Rubik", "Inconsolata", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Rubik", "Inconsolata", sans-serif;
 }
 
 .main {
-	display: grid;
-	grid-template-areas: "toolbar" "body"
+  display: grid;
+  grid-template-areas: "toolbar" "body";
 }
 
 .container {
   overflow: scroll;
-	height: 100vh;
-	width: 100vw;
+  height: 100vh;
+  width: 100vw;
   padding: 4px;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-	align-content: flex-start;
+  align-content: flex-start;
 }
 
 .card {
-	position: relative;
-	display: flex;
-	flex-flow:column;
-	justify-content:stretch;
-	min-width: 200px;
-	max-width: 300px;
-	height: fit-content;
-	margin: 10px;
-	border-radius: 2%;
-	background-color:#ecf0f1;
-	box-shadow: 1px 1px 2px 1px #95a5a6;
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: stretch;
+  min-width: 200px;
+  max-width: 300px;
+  height: fit-content;
+  margin: 10px;
+  border-radius: 2%;
+  background-color: #ecf0f1;
+  box-shadow: 1px 1px 2px 1px #95a5a6;
 }
 
 .card-header {
-	max-height: 100px;
-	width: 100%;
-	padding: 4px;
-	background-color:#ecf0f1;
-	border-bottom: 1px #34495e;
-	display:flex;
-	justify-content: space-around;
-	align-content: center;
+  max-height: 100px;
+  width: 100%;
+  padding: 4px;
+  background-color: #ecf0f1;
+  border-bottom: 1px #34495e;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
 }
 
 .card-body {
-	max-height: 200px;
-	width: 100%;
-	padding: 2px;
-	background-color:#ecf0f1;
-	border-bottom: 1px #34495e;
+  max-height: 200px;
+  width: 100%;
+  padding: 2px;
+  background-color: #ecf0f1;
+  border-bottom: 1px #34495e;
 }
 
 .card:hover .card-delete {
-	opacity: 1;
+  opacity: 1;
 }
 
 .card-footer {
-	max-height: 100px;
-	width: 100%;
-	padding: 2px;
-	background-color:#ecf0f1;
-	display:flex;
-	flex-flow:wrap;
-	justify-content: flex-start;
-	align-content:middle;
+  max-height: 100px;
+  width: 100%;
+  padding: 2px;
+  background-color: #ecf0f1;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-content: center;
 }
 
 .card-delete {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	position:absolute;
-	top:-5px;
-	right:-5px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	opacity: 0;
-	cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .card-delete:before {
-	font-size: 10px;
-	content: 'X'
+  font-size: 10px;
+  content: "X";
 }
 
 .card-delete:hover {
-	background-color: #e74c3c;
-	color:#ecf0f1;
+  background-color: #e74c3c;
+  color: #ecf0f1;
 }
 
 .card-btn {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	height: 40px;
-	margin: 2px;
-	padding: 10px;
-	border-radius: 2px;
-	cursor: pointer;
-	font-size: 18px;
-	transition: all .2s;
-	display:flex;
-	flex-flow:wrap;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 40px;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+  display: flex;
+  flex-flow: wrap;
 }
 
 .card-btn:hover {
@@ -125,22 +125,28 @@ html {
 }
 
 .language-js {
-	display: block;
-	padding: 20px;
-	font-size: 17px;
-	line-height: 1.2em;
-	background: rgba(44, 62, 80,1);
-	color: rgba(39, 174, 96,1.0);
-	border-radius: 6px;
-	font-family: Inconsolata ;
+  display: block;
+  padding: 20px;
+  font-size: 17px;
+  line-height: 1.2em;
+  background: rgba(44, 62, 80, 1);
+  color: rgba(39, 174, 96, 1);
+  border-radius: 6px;
+  font-family: Inconsolata;
 }
 
 .language-html {
-  background: rgba(44, 62, 80,1);
-	background:linear-gradient(180deg,#ccc 0,#ccc 1.2em,#eee 0);
-  color: rgba(41, 128, 185,1.0);
+  background: rgba(44, 62, 80, 1);
+  background: linear-gradient(180deg, #ccc 0, #ccc 1.2em, #eee 0);
+  color: rgba(41, 128, 185, 1);
 }
 
 .full-width {
-	width: 100%;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    flex-flow: row;
+  }
 }
