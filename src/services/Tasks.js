@@ -1,10 +1,9 @@
 import m from 'mithril'
 import Task from 'data.task'
 import { makeQuery } from './index.js'
+import {onlineUrl} from '../../secret.js'
 
 const baseUrl = 'http://localhost:4466/'
-const onlineUrl =
-  'https://eu1.prisma.sh/boaz-blake-8951e1/mithril-presenter/dev'
 
 export const postQl = query =>
   new Task((rej, res) =>
