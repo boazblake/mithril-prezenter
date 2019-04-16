@@ -2,9 +2,23 @@
   width: 200px;
   height: 200px;
   margin: 12px;
-  overflow:hidden;
+  overflow: hidden;
 }
 
+.card.preview {
+  cursor: grab;
+}
+
+.preview > .card-header {
+  z-index: 2;
+  background: transparent;
+}
+
+.preview > .card-body {
+  position: absolute;
+  z-index: 2;
+  background: transparent;
+}
 
 .preview-delete {
   top: 4px;
@@ -12,7 +26,7 @@
 }
 
 .preview-delete:before {
- padding-left: 4px
+  padding-left: 4px;
 }
 
 .slidePosition {

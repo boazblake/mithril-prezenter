@@ -5,8 +5,10 @@
   background: white;
   overflow: scroll;
   padding: 20px;
+  outline: 0;
 }
 
 .slidecard {
-  animation: stretchRight 1s ease-in-out;
+  animation: stretchRight 1s ease-in-out both;
+  outline: 0;
 }
