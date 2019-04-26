@@ -1,7 +1,10 @@
 import m from "mithril"
 import { pluck } from "ramda"
 import Remarkable from "remarkable"
-import { animateEntrance } from "../services/animations.js"
+import {
+  animateSlideEntrance,
+  animateEntranceRight
+} from "../services/animations.js"
 
 const md = new Remarkable("full", {
   html: false,
@@ -59,7 +62,7 @@ const SlideShow = ({ attrs: { Models } }) => {
         m(
           ".slidecard",
           {
-            onupdate: ({ dom }) => animateEntrance({ dom })
+            onupdate: ({ dom }) => animateEntranceRight({ dom })
           },
           m.trust(md.render(state.contents[state.cursor]) || "~ FIN ~")
         )

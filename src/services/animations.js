@@ -1,13 +1,13 @@
 import anime from "animejs"
 
-export const animateEntrance = ({ dom }) => {
+export const animateSlideEntrance = ({ dom }) => {
   return dom.animate(
     [
-      { transform: "translate3d(100%,0,0)", scale: 2, opacity: 0 },
-      { transform: "none", opacity: 1, scale: 1 }
+      { transform: "translate3d(20%,0,0)", opacity: 0 },
+      { transform: "none", opacity: 1 }
     ],
     {
-      duration: 350
+      duration: 650
     }
   )
 }

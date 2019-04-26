@@ -10,19 +10,23 @@
 }
 
 .preview > .card-header {
-  z-index: 2;
   background: transparent;
 }
 
 .preview > .card-body {
   position: absolute;
-  z-index: 2;
   background: transparent;
+}
+
+.preview > .card-body > * {
+  opacity: 0.1;
 }
 
 .preview-delete {
   top: 4px;
   right: 4px;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .preview-delete:before {
