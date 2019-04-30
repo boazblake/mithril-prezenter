@@ -27,23 +27,23 @@ const SlideShow = ({ attrs: { Models } }) => {
     contents: pluck("content", Models.CurrentPresentation.slideShow())
   }
 
-  const nextSlide = () => {
-    document.body.scrollTop = 0
+  const nextSlide = (dom) => {
+    dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
     state.cursor == state.size ? "" : state.cursor++
   }
 
-  const prevSlide = () => {
-    document.body.scrollTop = 0
+  const prevSlide = (dom) => {
+    dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
     state.cursor == 0 ? "" : state.cursor--
   }
 
-  const changeSlide = (key) => {
+  const changeSlide = (key, target) => {
     switch (key) {
       case "ArrowLeft":
-        prevSlide()
+        prevSlide(target)
         break
       case "ArrowRight":
-        nextSlide()
+        nextSlide(target)
         break
     }
   }
@@ -55,8 +55,8 @@ const SlideShow = ({ attrs: { Models } }) => {
         ".slideshow",
         {
           tabindex: 0,
-          onkeyup: ({ key }) => {
-            changeSlide(key)
+          onkeyup: ({ key, target }) => {
+            changeSlide(key, target)
           }
         },
         m(
