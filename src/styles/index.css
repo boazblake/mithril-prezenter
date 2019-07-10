@@ -34,7 +34,6 @@ html {
 }
 
 .container {
-
   padding: 4px;
   display: flex;
   flex-flow: column;

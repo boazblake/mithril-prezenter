@@ -56,7 +56,7 @@ const Editor = () => {
     oncreate: getSlide,
     view: ({ attrs: { Models } }) =>
       m(".container", [
-        m(".editor-left.card", [
+        m(".card.editor-left", [
           m(".card-header", [
             m("input.editor-input", {
               type: "text",
