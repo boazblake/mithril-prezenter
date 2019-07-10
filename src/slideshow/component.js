@@ -10,7 +10,7 @@ const md = new remarkable("full", {
   headerIds: true,
   headerPrefix: "",
   highlight: null,
-  langPrefix: "lan-",
+  langPrefix: "lang-",
   mangle: true,
   pedantic: false,
   sanitize: false,
@@ -30,9 +30,6 @@ const md = new remarkable("full", {
 const SlideShow = ({ attrs: { Models } }) => {
   const state = {
     cursor: 0,
-    isFullscreenWidth: "vh",
-    isFullscreenHeight: "%",
-    clicks: 0,
     size: Models.CurrentPresentation.slideShow().length,
     contents: pluck("content", Models.CurrentPresentation.slideShow()),
   }

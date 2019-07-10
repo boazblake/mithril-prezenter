@@ -9,7 +9,7 @@ const md = new remarkable("full", {
   headerIds: true,
   headerPrefix: "",
   highlight: null,
-  langPrefix: "lan-",
+  langPrefix: "lang-",
   mangle: true,
   pedantic: false,
   sanitize: false,
