@@ -29,6 +29,7 @@ const md = new remarkable("full", {
 
 const SlideShow = ({ attrs: { Models } }) => {
   const state = {
+    key: undefined,
     cursor: 0,
     size: Models.CurrentPresentation.slideShow().length,
     contents: pluck("content", Models.CurrentPresentation.slideShow()),
@@ -52,10 +53,17 @@ const SlideShow = ({ attrs: { Models } }) => {
       case "ArrowRight":
         nextSlide(target)
         break
+      case "ArrowUp":
+        target.scrollBy(0, 100)
+        break
+      case "ArrowDown":
+        target.scrollBy(0, -100)
+        break
     }
   }
 
   return {
+    dir: state.key,
     oninit: (state.slide = state.contents[state.cursor]),
     view: ({ attrs: { Models } }) => {
       return m(
@@ -63,12 +71,14 @@ const SlideShow = ({ attrs: { Models } }) => {
         {
           tabindex: 0,
           onkeyup: ({ key, target }) => {
+            state.key = key
             changeSlide(key, target)
           },
         },
         m(
           ".slidecard",
           {
+            onbeforeupdate: () => !["ArrowUp", "ArrowDown"].includes(state.key),
             onupdate: ({ dom }) => animateEntranceRight({ dom }),
           },
           m.trust(md.render(state.contents[state.cursor]) || "~ FIN ~")
