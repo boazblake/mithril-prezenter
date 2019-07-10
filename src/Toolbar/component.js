@@ -1,49 +1,42 @@
-import m from 'mithril'
-import {
-  isEmpty,
-  length,
-  split,
-  view,
-  lensProp,
-} from 'ramda'
-
+import m from "mithril"
+import { isEmpty, length, split, view, lensProp } from "ramda"
 
 const toggleModal = model => {
   return [
     m(
-      'a.toolbar-item',
+      "a.toolbar-item",
       {
         onclick: () => (model.toggleModal = !model.toggleModal),
       },
-      'Add New'
+      "Add New"
     ),
   ]
 }
 const toPresentations = [
   m(
-    'a.toolbar-item',
+    "a.toolbar-item",
     {
       oncreate: m.route.link,
-      href: '/presentations',
+      href: "/presentations",
     },
-    'Presentations'
+    "Presentations"
   ),
 ]
 
 const toSlides = model => [
   m(
-    'a.toolbar-item',
+    "a.toolbar-item",
     {
       oncreate: m.route.link,
       href: `/presentation/${model.CurrentPresentation.id}/slides`,
     },
-    'slides'
+    "slides"
   ),
 ]
 
 const toSlideShow = model => [
   m(
-    'a.toolbar-item',
+    "a.toolbar-item",
     {
       disabled: isEmpty(length(model.CurrentPresentation.slideShow))
         ? true
@@ -51,56 +44,51 @@ const toSlideShow = model => [
       oncreate: m.route.link,
       href: `/slideshow/${model.CurrentPresentation.id}`,
     },
-    'Slide Show'
+    "Slide Show"
   ),
 ]
 
 const navView = model => page => {
   switch (page) {
-    case 'presentation':
+    case "presentation":
       return [toPresentations, toSlideShow(model)]
       break
 
-    case 'slideshow':
+    case "slideshow":
       return [toPresentations, toSlides(model)]
       break
 
-    case 'slides':
+    case "slides":
       return [toPresentations, toSlideShow(model)]
       break
 
-    case 'edit':
+    case "edit":
       return [toPresentations, toSlides(model), toSlideShow(model)]
       break
     default:
-    // log('navView errorpage')()
   }
 }
 
 const actionView = model => page => {
   switch (page) {
-    case 'presentations':
+    case "presentations":
       return [toggleModal(model)]
       break
-    case 'presentation':
+    case "presentation":
       return [toggleModal(model)]
       break
     default:
-    // log('actionView errorpage')()
   }
 }
 
 const Toolbar = ({ attrs: { Models } }) => {
-  const currentPage = view(lensProp(1), split('/', m.route.get()))
+  const currentPage = view(lensProp(1), split("/", m.route.get()))
   return {
     view: ({ attrs: { Models } }) =>
-       m(
-        '.toolbar',
-        [
-          m('.toolbar-left', [navView(Models)(currentPage)]),
-          m('.toolbar-right', [actionView(Models)(currentPage)]),
-        ],
-        ),
+      m(".toolbar", [
+        m(".toolbar-left", [navView(Models)(currentPage)]),
+        m(".toolbar-right", [actionView(Models)(currentPage)]),
+      ]),
   }
 }
 
