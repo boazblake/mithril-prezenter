@@ -1,8 +1,8 @@
-import m from 'mithril'
-import { log } from '../../services/index.js'
-import { without } from 'ramda'
-import { deletePresentationsTask } from '../model.js'
-import Task from 'data.task'
+import m from "mithril"
+import { log } from "../../services/index.js"
+import { without } from "ramda"
+import { deletePresentationsTask } from "../model.js"
+import Task from "data.task"
 
 const Presentation = ({ attrs: { title, id, Models } }) => {
   const onError = task => error => log(`error with ${task}`)(error)
@@ -11,36 +11,32 @@ const Presentation = ({ attrs: { title, id, Models } }) => {
   }
 
   const authDeleteTask = id =>
-    window.confirm('Are you sure you want to delete?')
+    window.confirm("Are you sure you want to delete?")
       ? Task.of(id)
       : Task.rejected(id)
 
   const removePresTask = pId =>
     authDeleteTask(pId)
       .chain(deletePresentationsTask)
-      .fork(onError('deleting'), onSuccess(Models))
+      .fork(onError("deleting"), onSuccess(Models))
 
   return {
     view: ({ attrs: { title, id, Models } }) =>
-      m('.card', [
-        m('div.card-header', [
+      m(".card", [
+        m("div.card-header", [
           m(
-            'button.card-btn.full-width',
+            ".card-btn.full-width",
             {
               onclick: () => m.route.set(`/presentation/${id}/slides`),
             },
             title
           ),
-          m('button.card-delete', {
+          m("button.card-delete", {
             onclick: () => removePresTask(id),
           }),
         ]),
-        m('div.card-body', [
-
-        ]),
-        m('div.card-footer', [
-
-        ]),
+        m("div.card-body", []),
+        m("div.card-footer", []),
       ]),
   }
 }

@@ -52,15 +52,16 @@ html {
   height: fit-content;
   margin: 10px;
   border-radius: 2%;
-  background-color: #ecf0f1;
+  background-color: rgba(44, 62, 80, 1);
   box-shadow: 1px 1px 2px 1px #95a5a6;
+  color: rgba(236,240,241 ,1);
 }
 
 .card-header {
   max-height: 100px;
   width: 100%;
   padding: 4px;
-  background-color: #ecf0f1;
+  background-color: rgba(44, 62, 80, 1);
   border-bottom: 1px #34495e;
   display: flex;
   justify-content: space-around;
@@ -71,7 +72,7 @@ html {
   max-height: 200px;
   width: 100%;
   padding: 2px;
-  background-color: #ecf0f1;
+  background-color: rgba(44, 62, 80, 1);
   border-bottom: 1px #34495e;
 }
 
@@ -83,7 +84,7 @@ html {
   max-height: 100px;
   width: 100%;
   padding: 2px;
-  background-color: #ecf0f1;
+  background-color: rgba(44, 62, 80, 1);
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;
@@ -110,7 +111,7 @@ html {
 
 .card-delete:hover {
   background-color: #e74c3c;
-  color: #ecf0f1;
+  color: rgba(44, 62, 80, 1);
 }
 
 .card-btn {
@@ -128,8 +129,8 @@ html {
 }
 
 .card-btn:hover {
-  background-color: #6f7375;
-  color: #bdc3c7;
+  background-color: rgba(189,195,199,1);
+   color: rgba(44, 62, 80, 1);
 }
 
 .language-js {

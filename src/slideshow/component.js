@@ -1,10 +1,6 @@
 import m from "mithril"
 import { pluck } from "ramda"
-import marked from "marked"
-import {
-  animateSlideEntrance,
-  animateEntranceRight,
-} from "../services/animations.js"
+import { animateEntranceRight } from "../services/animations.js"
 import remarkable from "remarkable"
 
 const md = new remarkable("full", {
