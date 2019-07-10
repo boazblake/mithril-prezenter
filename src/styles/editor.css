@@ -25,10 +25,6 @@
   justify-content: flex-start;
 }
 
-.editor-right * {
-  font-weight: 100;
-}
-
 .editor-input {
   width: 100%;
   line-height: 20px;

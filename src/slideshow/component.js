@@ -1,20 +1,34 @@
 import m from "mithril"
 import { pluck } from "ramda"
-import Remarkable from "remarkable"
+import marked from "marked"
 import {
   animateSlideEntrance,
-  animateEntranceRight
+  animateEntranceRight,
 } from "../services/animations.js"
+import remarkable from "remarkable"
 
-const md = new Remarkable("full", {
-  html: false,
-  xhtmlOut: false,
+const md = new remarkable("full", {
+  baseUrl: null,
   breaks: false,
-  langPrefix: "language-",
+  gfm: true,
+  headerIds: true,
+  headerPrefix: "",
+  highlight: null,
+  langPrefix: "lan-",
+  mangle: true,
+  pedantic: false,
+  sanitize: false,
+  sanitizer: null,
+  silent: true,
+  smartLists: true,
+  smartypants: true,
+  tables: true,
+  xhtml: true,
+  html: true,
   linkify: true,
   linkTarget: "",
   typographer: true,
-  quotes: "“”‘’"
+  quotes: "“”‘’",
 })
 
 const SlideShow = ({ attrs: { Models } }) => {
@@ -24,17 +38,17 @@ const SlideShow = ({ attrs: { Models } }) => {
     isFullscreenHeight: "%",
     clicks: 0,
     size: Models.CurrentPresentation.slideShow().length,
-    contents: pluck("content", Models.CurrentPresentation.slideShow())
+    contents: pluck("content", Models.CurrentPresentation.slideShow()),
   }
 
-  const nextSlide = (dom) => {
+  const nextSlide = dom => {
     dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
-    state.cursor == state.size ? "" : state.cursor++
+    state.cursor == state.size - 1 ? state.cursor : state.cursor++
   }
 
-  const prevSlide = (dom) => {
+  const prevSlide = dom => {
     dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
-    state.cursor == 0 ? "" : state.cursor--
+    state.cursor == 0 ? state.cursor : state.cursor--
   }
 
   const changeSlide = (key, target) => {
@@ -57,17 +71,17 @@ const SlideShow = ({ attrs: { Models } }) => {
           tabindex: 0,
           onkeyup: ({ key, target }) => {
             changeSlide(key, target)
-          }
+          },
         },
         m(
           ".slidecard",
           {
-            onupdate: ({ dom }) => animateEntranceRight({ dom })
+            onupdate: ({ dom }) => animateEntranceRight({ dom }),
           },
           m.trust(md.render(state.contents[state.cursor]) || "~ FIN ~")
         )
       )
-    }
+    },
   }
 }
 

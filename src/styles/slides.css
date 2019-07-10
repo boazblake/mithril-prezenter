@@ -5,7 +5,6 @@
 
 .left-drag {
   grid-area: left-drag;
-  overflow: scroll;
   display: flex;
   flex-flow: column;
   order: 1;
@@ -20,7 +19,6 @@
 .right-drag {
   order: 2;
   grid-area: right-drag;
-  overflow: scroll;
   flex-flow: wrap;
   display: flex;
   min-width: 100%;

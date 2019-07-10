@@ -3,14 +3,24 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik");
 @import url("https://fonts.googleapis.com/css?family=Inconsolata");
 
+
+@import url('./animations.css');
+@import url('./slideshow.css');
+@import url('./editor.css');
+@import url('./modal.css');
+@import url('./preview.css');
+@import url('./slides.css');
+@import url('./presentations.css');
+@import url('./toolbar.css');
+
+
 * {
   box-sizing: border-box;
 }
 
+
 body,
 html {
-  height: 100vh;
-  width: 100vw;
   padding: 0;
   margin: 0;
   display: flex;
@@ -24,9 +34,7 @@ html {
 }
 
 .container {
-  overflow: scroll;
-  height: 100vh;
-  width: 100vw;
+
   padding: 4px;
   display: flex;
   flex-flow: column;
@@ -136,6 +144,7 @@ html {
 }
 
 .language-html {
+  font-family: code;
   background: rgba(44, 62, 80, 1);
   background: linear-gradient(180deg, #ccc 0, #ccc 1.2em, #eee 0);
   color: rgba(41, 128, 185, 1);
