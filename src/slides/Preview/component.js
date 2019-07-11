@@ -1,38 +1,13 @@
 import m from "mithril"
 import { concat, eqProps, compose, filter, map, propEq, head } from "ramda"
 import { log } from "../../services/index.js"
-import { animateExit, animateFadeIn } from "../../services/animations.js"
+import { animateFadeIn } from "../../services/animations.js"
 import {
   forGreater,
   reduceOrder,
   updateRemoveSlide,
   updateSlideTask,
 } from "../model.js"
-import remarkable from "remarkable"
-
-const md = new remarkable("full", {
-  baseUrl: null,
-  breaks: false,
-  gfm: true,
-  headerIds: true,
-  headerPrefix: "",
-  highlight: null,
-  langPrefix: "lang-",
-  mangle: true,
-  pedantic: false,
-  sanitize: false,
-  sanitizer: null,
-  silent: true,
-  smartLists: true,
-  smartypants: true,
-  tables: true,
-  xhtml: true,
-  html: true,
-  linkify: true,
-  linkTarget: "",
-  typographer: true,
-  quotes: "“”‘’",
-})
 
 const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
   const onError = task => error => log(`error with ${task}`)(error)
@@ -101,7 +76,7 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
 
   return {
     oncreate: ({ dom }) => animateFadeIn({ dom }),
-    view: ({ attrs: { s, state } }) =>
+    view: ({ attrs: { Models, s, state } }) =>
       m(
         ".card.preview",
         {
@@ -125,7 +100,7 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
               onclick: () => removeSlideTask(s),
             }),
           ]),
-          m(".card-body", m.trust(md.render(s.content))),
+          m(".card-body", m.trust(Models.markup.render(s.content))),
         ]
       ),
   }

@@ -1,30 +1,6 @@
 import m from "mithril"
 import { loadSlide, editSlide } from "./model.js"
-import remarkable from "remarkable"
-
-const md = new remarkable("full", {
-  baseUrl: null,
-  breaks: false,
-  gfm: true,
-  headerIds: true,
-  headerPrefix: "",
-  highlight: null,
-  langPrefix: "lang-",
-  mangle: true,
-  pedantic: false,
-  sanitize: false,
-  sanitizer: null,
-  silent: true,
-  smartLists: true,
-  smartypants: true,
-  tables: true,
-  xhtml: true,
-  html: true,
-  linkify: true,
-  linkTarget: "",
-  typographer: true,
-  quotes: "“”‘’",
-})
+import Stream from "mithril-stream"
 
 const Editor = () => {
   let state = { presentationId: "", slide: { title: "", content: "", id: "" } }
@@ -86,7 +62,10 @@ const Editor = () => {
             ),
           ]),
         ]),
-        m(".editor-right", m.trust(md.render(state.slide.content || ""))),
+        m(
+          ".editor-right",
+          m.trust(Models.markup.render(state.slide.content || ""))
+        ),
       ]),
   }
 }

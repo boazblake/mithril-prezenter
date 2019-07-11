@@ -1,31 +1,6 @@
 import m from "mithril"
 import { pluck } from "ramda"
 import { animateEntranceRight } from "../services/animations.js"
-import remarkable from "remarkable"
-
-const md = new remarkable("full", {
-  baseUrl: null,
-  breaks: false,
-  gfm: true,
-  headerIds: true,
-  headerPrefix: "",
-  highlight: null,
-  langPrefix: "lang-",
-  mangle: true,
-  pedantic: false,
-  sanitize: false,
-  sanitizer: null,
-  silent: true,
-  smartLists: true,
-  smartypants: true,
-  tables: true,
-  xhtml: true,
-  html: true,
-  linkify: true,
-  linkTarget: "",
-  typographer: true,
-  quotes: "“”‘’",
-})
 
 const SlideShow = ({ attrs: { Models } }) => {
   const state = {
@@ -81,7 +56,9 @@ const SlideShow = ({ attrs: { Models } }) => {
             onbeforeupdate: () => !["ArrowUp", "ArrowDown"].includes(state.key),
             onupdate: ({ dom }) => animateEntranceRight({ dom }),
           },
-          m.trust(md.render(state.contents[state.cursor]) || "~ FIN ~")
+          m.trust(
+            Models.markup.render(state.contents[state.cursor]) || "~ FIN ~"
+          )
         )
       )
     },
