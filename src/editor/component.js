@@ -2,6 +2,26 @@ import m from "mithril"
 import { loadSlide, editSlide } from "./model.js"
 import Stream from "mithril-stream"
 
+const Button = {
+  view: ({ attrs: { action, label } }) =>
+    m(
+      "button.card-btn",
+      {
+        onclick: action,
+      },
+      label
+    ),
+}
+
+const Actions = ({ attrs: { Models } }) => {
+  return {
+    view: ({ attrs: { Models } }) => [
+      m(Button, { action: () => console.log("undo"), label: "Undo" }),
+      m(Button, { action: () => console.log("redo"), label: "Redo" }),
+    ],
+  }
+}
+
 const Editor = () => {
   let state = { presentationId: "", slide: { title: "", content: "", id: "" } }
 
@@ -46,20 +66,9 @@ const Editor = () => {
             value: state.slide.content,
           }),
           m(".card-footer", [
-            m(
-              "button.card-btn",
-              {
-                onclick: save,
-              },
-              "Save"
-            ),
-            m(
-              "button.card-btn",
-              {
-                onclick: toSlides,
-              },
-              "Cancel"
-            ),
+            m(Actions, { Models }),
+            m(Button, { action: save, label: "Save" }),
+            m(Button, { action: toSlides, label: "Cancel" }),
           ]),
         ]),
         m(

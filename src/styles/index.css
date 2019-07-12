@@ -37,8 +37,6 @@ html {
   padding: 4px;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
-  align-content: flex-start;
 }
 
 .card {

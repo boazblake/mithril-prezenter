@@ -1,12 +1,12 @@
-import { getQlTask } from '../services/requests.js'
-import { path } from 'ramda'
+import { getQlTask } from "../services/requests.js"
+import { path } from "ramda"
 
 export const loadSlide = id => {
   let q = `{ slide(where:{id:${JSON.stringify(id)}}){
               id content title
             }
           }`
-  return getQlTask(q).map(path(['data', 'slide']))
+  return getQlTask(q).map(path(["data", "slide"]))
 }
 
 export const editSlide = ({ id, title, content }) => {
@@ -24,5 +24,5 @@ export const editSlide = ({ id, title, content }) => {
               }
         }`
 
-  return getQlTask(q).map(path(['data', 'updatePresentation', 'Slides']))
+  return getQlTask(q).map(path(["data", "updatePresentation", "Slides"]))
 }
