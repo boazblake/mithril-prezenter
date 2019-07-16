@@ -13,16 +13,7 @@ const Button = {
     ),
 }
 
-const Actions = ({ attrs: { Models } }) => {
-  return {
-    view: ({ attrs: { Models } }) => [
-      m(Button, { action: () => console.log("undo"), label: "Undo" }),
-      m(Button, { action: () => console.log("redo"), label: "Redo" }),
-    ],
-  }
-}
-
-const Editor = () => {
+const Editor = v => {
   let state = { presentationId: "", slide: { title: "", content: "", id: "" } }
 
   const toSlides = _ =>
@@ -48,29 +39,38 @@ const Editor = () => {
     editSlide(state.slide).fork(onError, () => toSlides())
   }
 
+  const logDom = d => {
+    console.log("update", d)
+    return d
+  }
+
   return {
-    oncreate: getSlide,
+    oncreate: getSlide(),
     view: ({ attrs: { Models } }) =>
       m(".container", [
-        m(".card.editor-left", [
-          m(".card-header", [
-            m("input.editor-input", {
-              type: "text",
-              placeholder: "Slide Title",
-              oninput: updateInput("title"),
-              value: state.slide.title,
+        // { onscroll: logDom },
+        m(
+          ".card.editor-left",
+
+          [
+            m(".card-header", [
+              m("input.editor-input", {
+                type: "text",
+                placeholder: "Slide Title",
+                oninput: updateInput("title"),
+                value: state.slide.title,
+              }),
+            ]),
+            m("textarea.editor-text", {
+              oninput: updateInput("content"),
+              value: state.slide.content,
             }),
-          ]),
-          m("textarea.editor-text", {
-            oninput: updateInput("content"),
-            value: state.slide.content,
-          }),
-          m(".card-footer", [
-            m(Actions, { Models }),
-            m(Button, { action: save, label: "Save" }),
-            m(Button, { action: toSlides, label: "Cancel" }),
-          ]),
-        ]),
+            m(".card-footer", [
+              m(Button, { action: save, label: "Save" }),
+              m(Button, { action: toSlides, label: "Cancel" }),
+            ]),
+          ]
+        ),
         m(
           ".editor-right",
           m.trust(Models.markup.render(state.slide.content || ""))
