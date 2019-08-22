@@ -1,15 +1,15 @@
 import m from "mithril"
 import { isEmpty, length, split, view, lensProp } from "ramda"
 
-const toggleModal = model => {
+const toggleModal = (model) => {
   return [
     m(
       "a.toolbar-item",
       {
-        onclick: () => (model.toggleModal = !model.toggleModal),
+        onclick: () => (model.toggleModal = !model.toggleModal)
       },
       "Add New"
-    ),
+    )
   ]
 }
 const toPresentations = [
@@ -17,24 +17,24 @@ const toPresentations = [
     "a.toolbar-item",
     {
       oncreate: m.route.link,
-      href: "/presentations",
+      href: "/presentations"
     },
     "Presentations"
-  ),
+  )
 ]
 
-const toSlides = model => [
+const toSlides = (model) => [
   m(
     "a.toolbar-item",
     {
       oncreate: m.route.link,
-      href: `/presentation/${model.CurrentPresentation.id}/slides`,
+      href: `/presentation/${model.CurrentPresentation.id}/slides`
     },
     "slides"
-  ),
+  )
 ]
 
-const toSlideShow = model => [
+const toSlideShow = (model) => [
   m(
     "a.toolbar-item",
     {
@@ -42,13 +42,14 @@ const toSlideShow = model => [
         ? true
         : false,
       oncreate: m.route.link,
-      href: `/slideshow/${model.CurrentPresentation.id}`,
+      href: `/slideshow/${model.CurrentPresentation.id}`
     },
     "Slide Show"
-  ),
+  )
 ]
 
-const navView = model => page => {
+const navView = (model) => {
+  let page = view(lensProp(1), split("/", m.route.get()))
   switch (page) {
     case "presentation":
       return [toPresentations, toSlideShow(model)]
@@ -69,7 +70,8 @@ const navView = model => page => {
   }
 }
 
-const actionView = model => page => {
+const actionView = (model) => {
+  let page = view(lensProp(1), split("/", m.route.get()))
   switch (page) {
     case "presentations":
       return [toggleModal(model)]
@@ -82,13 +84,12 @@ const actionView = model => page => {
 }
 
 const Toolbar = ({ attrs: { Models } }) => {
-  const currentPage = view(lensProp(1), split("/", m.route.get()))
   return {
     view: ({ attrs: { Models } }) =>
       m(".toolbar", [
-        m(".toolbar-left", [navView(Models)(currentPage)]),
-        m(".toolbar-right", [actionView(Models)(currentPage)]),
-      ]),
+        m(".toolbar-left", [navView(Models)]),
+        m(".toolbar-right", [actionView(Models)])
+      ])
   }
 }
 
