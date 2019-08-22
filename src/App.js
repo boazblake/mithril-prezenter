@@ -1,43 +1,46 @@
-import m from 'mithril'
-import Stream from 'mithril-stream'
+import m from "mithril"
+import Stream from "mithril-stream"
 
-import Presentations from './presentations/component.js'
-import Slides from './slides/component.js'
-import Editor from './editor/component.js'
-import Layout from './layout/component.js'
-import SlideShow from './slideshow/component.js'
-import { getPresentations } from './presentations/model.js'
-import { log } from './services/index.js'
+import Presentations from "./presentations/component.js"
+import Slides from "./slides/component.js"
+import Editor from "./editor/component.js"
+import Layout from "./layout/component.js"
+import SlideShow from "./slideshow/component.js"
+import { getPresentations } from "./presentations/model.js"
+import { log } from "./services/index.js"
 
-const makeRoutes = mdl => {
+const makeRoutes = (mdl) => {
   let model = Stream(mdl)
   return {
-    '/presentations': {
-      view: () => m(Layout, model(), m(Presentations, model())),
+    "/presentations": {
+      render: () => m(Layout, model(), m(Presentations, model()))
     },
-    '/presentation/:id/slides': {
-      view: () => m(Layout, model(), m(Slides, model())),
+    "/presentation/:id/slides": {
+      render: () => m(Layout, model(), m(Slides, model()))
     },
-    '/edit/:pid/slide/:id': {
-      view: () => m(Layout, model(), m(Editor, model())),
+    "/edit/:pid/slide/:id": {
+      render: () => m(Layout, model(), m(Editor, model()))
     },
-    '/slideshow/:id': {
-      view: () => m(Layout, model(), m(SlideShow, model())),
-    },
+    "/slideshow/:id": {
+      onmatch: ({ id }) =>
+        model().Models.CurrentPresentation.Slides.length == 0 &&
+        m.route.set(`/presentation/${id}/slides`),
+      render: () => m(Layout, model(), m(SlideShow, model()))
+    }
   }
 }
 
 export const App = ({ attrs: model }) => {
   const state = {
-    errors: '',
+    errors: ""
   }
 
-  const onError = error => {
-    log('error')(error)
+  const onError = (error) => {
+    log("error")(error)
     state.error = error
   }
 
-  const onSuccess = Models => dto => (Models.Presentations = dto)
+  const onSuccess = (Models) => (dto) => (Models.Presentations = dto)
 
   const findPresentations = ({ attrs: { Models } }) =>
     getPresentations().fork(onError, onSuccess(Models))
@@ -45,13 +48,13 @@ export const App = ({ attrs: model }) => {
   return {
     oninit: findPresentations,
     oncreate: ({ dom }) => {
-      const main = dom.querySelector('.main')
+      const main = dom.querySelector(".main")
 
-      m.route(main, '/presentations', makeRoutes(model))
+      m.route(main, "/presentations", makeRoutes(model))
     },
     view: ({ children }) => {
-      return m('.app',[m('.main', children)])
-    },
+      return m(".app", [m(".main", children)])
+    }
   }
 }
 

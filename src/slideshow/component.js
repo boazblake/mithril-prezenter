@@ -7,15 +7,15 @@ const SlideShow = ({ attrs: { Models } }) => {
     key: undefined,
     cursor: 0,
     size: Models.CurrentPresentation.slideShow().length,
-    contents: pluck("content", Models.CurrentPresentation.slideShow()),
+    contents: pluck("content", Models.CurrentPresentation.slideShow())
   }
 
-  const nextSlide = dom => {
+  const nextSlide = (dom) => {
     dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
     state.cursor == state.size - 1 ? state.cursor : state.cursor++
   }
 
-  const prevSlide = dom => {
+  const prevSlide = (dom) => {
     dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
     state.cursor == 0 ? state.cursor : state.cursor--
   }
@@ -40,28 +40,27 @@ const SlideShow = ({ attrs: { Models } }) => {
   return {
     dir: state.key,
     oninit: (state.slide = state.contents[state.cursor]),
-    view: ({ attrs: { Models } }) => {
-      return m(
+    view: ({ attrs: { Models } }) =>
+      m(
         ".slideshow",
         {
           tabindex: 0,
           onkeyup: ({ key, target }) => {
             state.key = key
             changeSlide(key, target)
-          },
+          }
         },
         m(
           ".slidecard",
           {
             onbeforeupdate: () => !["ArrowUp", "ArrowDown"].includes(state.key),
-            onupdate: ({ dom }) => animateEntranceRight({ dom }),
+            onupdate: ({ dom }) => animateEntranceRight({ dom })
           },
           m.trust(
             Models.markup.render(state.contents[state.cursor]) || "~ FIN ~"
           )
         )
       )
-    },
   }
 }
 
