@@ -14,8 +14,9 @@ const toggleModal = (model) => {
 }
 const toPresentations = [
   m(
-    "a.toolbar-item",
+    m.route.Link,
     {
+      class: "toolbar-item",
       oncreate: m.route.link,
       href: "/presentations"
     },
@@ -25,8 +26,9 @@ const toPresentations = [
 
 const toSlides = (model) => [
   m(
-    "a.toolbar-item",
+    m.route.Link,
     {
+      class: "toolbar-item",
       oncreate: m.route.link,
       href: `/presentation/${model.CurrentPresentation.id}/slides`
     },
@@ -36,8 +38,9 @@ const toSlides = (model) => [
 
 const toSlideShow = (model) => [
   m(
-    "a.toolbar-item",
+    m.route.Link,
     {
+      class: "toolbar-item",
       disabled: isEmpty(length(model.CurrentPresentation.slideShow))
         ? true
         : false,
