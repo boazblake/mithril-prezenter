@@ -6,21 +6,50 @@ import {
   forGreater,
   reduceOrder,
   updateRemoveSlide,
-  updateSlideTask,
+  updateSlideTask
 } from "../model.js"
 
-const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
-  const onError = task => error => log(`error with ${task}`)(error)
-  const onSuccess = _ => getSlides({ attrs: { Models } })
+const SlidePosition = ({ attrs: { update } }) => {
+  const updateSlidesPosition = (dir, slides, slide) => {
+    switch (dir) {
+      case "left":
+        let prevSlide = slides.filter((x) => x.order == slide.order - 1)[0]
+        prevSlide.order++
+        slide.order--
+        update(slides)
+        break
+      case "right":
+        let nextSlide = slides.filter((x) => x.order == slide.order + 1)[0]
+        slide.order++
+        nextSlide.order--
+        update(slides)
+        break
+    }
+  }
 
-  const updateAndSaveSlideTask = slides => {
+  return {
+    view: ({ attrs: { slides, slide, dir } }) =>
+      m(`button.${dir}Btn`, {
+        disabled:
+          (dir == "right" && slide.order == slides.length) ||
+          (dir == "left" && slide.order == 1),
+        onclick: () => updateSlidesPosition(dir, slides, slide)
+      })
+  }
+}
+
+const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
+  const onError = (task) => (error) => log(`error with ${task}`)(error)
+  const onSuccess = (_) => getSlides({ attrs: { Models } })
+
+  const updateAndSaveSlideTask = (slides) => {
     return updateSlideTask(Models.CurrentPresentation.id)(slides).fork(
       onError("updating"),
       onSuccess
     )
   }
 
-  const removeSlideTask = s => {
+  const removeSlideTask = (s) => {
     let tail = compose(
       map(reduceOrder),
       filter(forGreater(s))
@@ -32,27 +61,27 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
     updateAndSaveSlideTask(updateList)
   }
 
-  const handleDragStart = ev => {
+  const handleDragStart = (ev) => {
     ev.target.style.opacity = "0.4"
     ev.dataTransfer.effectAllowed = "move"
     ev.dataTransfer.setData("text/plain", "preview")
     state.previewDrag.drag = head(filter(propEq("id", s.id), state.right()))
   }
 
-  const handleDragOver = ev => {
+  const handleDragOver = (ev) => {
     ev.preventDefault()
 
     if (state.previewDrag.drag) state.previewDrag.drop = s
   }
 
-  const handleDragLeave = ev => {
+  const handleDragLeave = (ev) => {
     ev.preventDefault()
     state.previewDrag.drop = null
   }
 
-  const handleDrop = ev => ev.preventDefault()
+  const handleDrop = (ev) => ev.preventDefault()
 
-  const handleDragEnd = ev => {
+  const handleDragEnd = (ev) => {
     ev.target.style.opacity = "1"
     state.slideDrag.dragging = false
     if (state.previewDrag.drop) {
@@ -90,19 +119,33 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
             opacity:
               state.previewDrag.drop && state.previewDrag.drop.id == s.id
                 ? 0.4
-                : 1,
-          },
+                : 1
+          }
         },
         [
           m(".card-header", [
             m("span.slidePosition", s.order),
             m("a.preview-delete.card-delete", {
-              onclick: () => removeSlideTask(s),
-            }),
+              onclick: () => removeSlideTask(s)
+            })
           ]),
           m(".card-body", m.trust(Models.markup.render(s.content))),
+          m(".card-footer", [
+            m(SlidePosition, {
+              slides: state.right(),
+              dir: "left",
+              slide: s,
+              update: updateAndSaveSlideTask
+            }),
+            m(SlidePosition, {
+              slides: state.right(),
+              dir: "right",
+              slide: s,
+              update: updateAndSaveSlideTask
+            })
+          ])
         ]
-      ),
+      )
   }
 }
 

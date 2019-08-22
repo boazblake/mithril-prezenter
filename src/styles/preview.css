@@ -3,6 +3,8 @@
   height: 200px;
   margin: 12px;
   overflow: hidden;
+  display: flex;
+  justify-content: space-around;
 }
 
 .card.preview {
@@ -11,6 +13,14 @@
 
 .preview > .card-header {
   background: transparent;
+  order: 1;
+}
+
+.preview > .card-footer {
+  background: transparent;
+  order: 3;
+  display: flex;
+  z-index: 3;
 }
 
 .preview > .card-body {
@@ -36,4 +46,54 @@
 .slidePosition {
   color: #e67e22;
   font-size: 6rem;
+}
+
+.leftBtn:enabled {
+  width: 0;
+  height: 0;
+  background: none;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 30px solid #c0392b;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.leftBtn:disabled {
+  width: 0;
+  height: 0;
+  background: none;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 30px solid #7f8c8d;
+  padding-left: 5px;
+}
+
+.leftBtn:hover:enabled {
+  padding-left: 2px;
+}
+
+.rightBtn:enabled {
+  width: 0;
+  height: 0;
+  background: none;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #c0392b;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.rightBtn:disabled {
+  width: 0;
+  height: 0;
+  background: none;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #95a5a6;
+  padding-right: 5px;
+}
+
+.rightBtn:hover:enabled {
+  padding-right: 2px;
 }
