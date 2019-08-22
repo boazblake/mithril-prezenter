@@ -16,13 +16,13 @@ const SlidePosition = ({ attrs: { update } }) => {
         let prevSlide = slides.filter((x) => x.order == slide.order - 1)[0]
         prevSlide.order++
         slide.order--
-        update(slides)
+        update([prevSlide, slide])
         break
       case "right":
         let nextSlide = slides.filter((x) => x.order == slide.order + 1)[0]
         slide.order++
         nextSlide.order--
-        update(slides)
+        update([nextSlide, slide])
         break
     }
   }
