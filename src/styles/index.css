@@ -74,7 +74,6 @@ html {
 
 .card-body {
   max-height: 200px;
-  width: 100%;
   padding: 2px;
   background-color: rgba(44, 62, 80, 1);
   border-bottom: 1px #34495e;
@@ -86,7 +85,6 @@ html {
 
 .card-footer {
   max-height: 100px;
-  width: 100%;
   padding: 2px;
   background-color: rgba(44, 62, 80, 1);
   display: flex;
@@ -99,11 +97,8 @@ html {
   -webkit-appearance: none;
   -moz-appearance: none;
   position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  top: 5px;
+  right: 5px;
   opacity: 0;
   cursor: pointer;
 }

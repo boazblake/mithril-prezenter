@@ -15,6 +15,10 @@
   width: 700px;
 }
 
+.modal-container > .card-body {
+  padding-right: 16px;
+}
+
 .modal-container > .card > .card-header,
 .card-body,
 .card-footer {
@@ -27,16 +31,9 @@
   flex-flow: column;
   justify-content: center;
   align-content: center;
-  width: 80%;
   color: rgba(44, 62, 80, 1);
   background-color: white;
-}
-
-.modal-fieldset {
-  display: flex;
-  font-size: 1.5em;
-  color: rgba(44, 62, 80, 1);
-  background-color: white;
+  padding-right: 15px;
 }
 
 .modal-title {

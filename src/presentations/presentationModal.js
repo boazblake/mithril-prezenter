@@ -34,13 +34,14 @@ const PresentationModal = ({ attrs }) => {
             })
           ]),
           m(".card-body", [
-            m(".modal-fieldset", [
+            m(
+              ".modal-content",
               m("input.modal-input", {
                 autofocus: true,
                 type: "text",
                 onchange: (e) => (attrs.state.title = e.target.value)
               })
-            ])
+            )
           ]),
           m(
             ".card-footer",

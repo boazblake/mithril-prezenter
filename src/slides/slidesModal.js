@@ -40,13 +40,14 @@ const SlidesModal = ({
             })
           ]),
           m(".card-body", [
-            m(".fieldset", [
+            m(
+              ".modal-content",
               m("input.modal-input", {
                 autofocus: true,
                 type: "text",
                 onchange: (e) => (state.title = e.target.value)
               })
-            ])
+            )
           ]),
           m(
             ".card-footer",

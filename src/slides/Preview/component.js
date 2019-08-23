@@ -125,7 +125,7 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
         [
           m(".card-header", [
             m("span.slidePosition", s.order),
-            m("a.preview-delete.card-delete", {
+            m(".card-delete.preview-delete", {
               onclick: () => removeSlideTask(s)
             })
           ]),

@@ -33,14 +33,12 @@
 }
 
 .preview-delete {
-  top: 4px;
-  right: 4px;
-  z-index: 3;
-  cursor: pointer;
+  width: 100%;
 }
 
-.preview-delete:before {
-  padding-left: 4px;
+.preview-delete::after {
+  font-size: 1.25em;
+  content: "remove slide";
 }
 
 .slidePosition {
