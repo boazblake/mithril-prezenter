@@ -4,16 +4,16 @@ import { without } from "ramda"
 import { deletePresentationsTask } from "../model.js"
 import Task from "data.task"
 
-const Presentation = ({ attrs: { title, id, Models } }) => {
-  const onError = (task) => (error) => log(`error with ${task}`)(error)
+const Presentation = ({ attrs: { Models } }) => {
+  const onError = (task) => (error) => log(`error with ${task}: `)(error)
   const onSuccess = (models) => (deleted) => {
-    return (Models.Presentations = without([deleted], Models.Presentations))
+    return (models.Presentations = without([deleted], models.Presentations))
   }
 
   const authDeleteTask = (id) =>
     window.confirm("Are you sure you want to delete?")
       ? Task.of(id)
-      : Task.rejected(id)
+      : Task.rejected("user denied req")
 
   const removePresTask = (pId) =>
     authDeleteTask(pId)
@@ -24,17 +24,23 @@ const Presentation = ({ attrs: { title, id, Models } }) => {
     view: ({ attrs: { title, id, Models } }) =>
       m(
         ".card",
-        {
-          onclick: () => m.route.set(`/presentation/${id}/slides`)
-        },
-        [
-          m("div.card-header.card-btn", [
+
+        m(
+          "div.card-header.card-btn",
+          {
+            onclick: () => m.route.set(`/presentation/${id}/slides`)
+          },
+          [
             title,
+
             m("button.card-delete", {
-              onclick: () => removePresTask(id)
+              onclick: (e) => {
+                e.stopPropagation()
+                removePresTask(id)
+              }
             })
-          ])
-        ]
+          ]
+        )
       )
   }
 }

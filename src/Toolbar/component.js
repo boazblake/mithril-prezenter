@@ -1,5 +1,5 @@
 import m from "mithril"
-import { isEmpty, length, split, view, lensProp } from "ramda"
+import { isEmpty, split, view, lensProp } from "ramda"
 
 const toggleModal = (model) => {
   return [
@@ -36,20 +36,21 @@ const toSlides = (model) => [
   )
 ]
 
-const toSlideShow = (model) => [
-  m(
-    m.route.Link,
-    {
-      class: "toolbar-item",
-      disabled: isEmpty(length(model.CurrentPresentation.slideShow))
-        ? true
-        : false,
-      oncreate: m.route.link,
-      href: `/slideshow/${model.CurrentPresentation.id}`
-    },
-    "Slide Show"
-  )
-]
+const toSlideShow = (model) => {
+  console.log(model)
+  return model.CurrentPresentation &&
+    isEmpty(model.CurrentPresentation.slideShow())
+    ? []
+    : m(
+        m.route.Link,
+        {
+          class: "toolbar-item",
+          oncreate: m.route.link,
+          href: `/slideshow/${model.CurrentPresentation.id}`
+        },
+        "Slide Show"
+      )
+}
 
 const navView = (model) => {
   let page = view(lensProp(1), split("/", m.route.get()))

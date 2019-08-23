@@ -10,6 +10,7 @@ import deflist from "markdown-it-deflist"
 import abbr from "markdown-it-abbr"
 import imsize from "markdown-it-imsize"
 import arrows from "markdown-it-smartarrows"
+import hljs from "highlight.js"
 
 const markup = new MarkdownIt({
   html: true, // Enable HTML tags in source
@@ -33,8 +34,9 @@ const markup = new MarkdownIt({
   // Highlighter function. Should return escaped HTML,
   // or '' if the source string is not changed and should be escaped externally.
   // If result starts with <pre... internal wrapper is skipped.
-  highlight: function(/*str, lang*/) {
-    return ""
+  highlight: function(str, lang) {
+    console.log("highilight", hljs, lang, string)
+    return str
   }
 })
   .use(highlightjs)

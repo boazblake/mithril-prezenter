@@ -1,5 +1,6 @@
 import m from "mithril"
 import { loadSlide, editSlide } from "./model.js"
+import Loader from "../loader/component.js"
 
 const Button = {
   view: ({ attrs: { action, label } }) =>
@@ -40,36 +41,34 @@ const Editor = ({ attrs: { Models } }) => {
 
   return {
     oncreate: getSlide(),
-    view: ({ attrs: { Models } }) =>
-      m(".container.editor", [
+    view: ({ attrs: { Models } }) => {
+      console.log("MODELS", Models)
+      return m(".container.editor", [
         // { onscroll: logDom },
-        m(
-          ".card.editor-left",
-
-          [
-            m(".card-header", [
-              m("input.editor-input", {
-                type: "text",
-                placeholder: "Slide Title",
-                oninput: updateInput("title"),
-                value: state.slide.title
-              })
-            ]),
-            m("textarea.editor-text", {
-              oninput: updateInput("content"),
-              value: state.slide.content
-            }),
-            m(".card-footer", [
-              m(Button, { action: save, label: "Save" }),
-              m(Button, { action: toSlides, label: "Cancel" })
-            ])
-          ]
-        ),
+        m(".card.editor-left", [
+          m(".card-header", [
+            m("input.editor-input", {
+              type: "text",
+              placeholder: "Slide Title",
+              oninput: updateInput("title"),
+              value: state.slide.title
+            })
+          ]),
+          m("textarea.editor-text", {
+            oninput: updateInput("content"),
+            value: state.slide.content
+          }),
+          m(".card-footer", [
+            m(Button, { action: save, label: "Save" }),
+            m(Button, { action: toSlides, label: "Cancel" })
+          ])
+        ]),
         m(
           ".editor-right",
           m.trust(Models.markup.render(state.slide.content || ""))
         )
       ])
+    }
   }
 }
 
