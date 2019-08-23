@@ -2,9 +2,21 @@ dependencies:
   animejs: 3.1.0
   data.maybe: 1.2.3
   data.task: 3.1.2
+  fs: 0.0.1-security
   highlight.js: 9.15.10
   json-graphql-server: 2.1.3
   json-server-extension: 1.1.2
+  markdown-it: 9.1.0
+  markdown-it-abbr: 1.0.4
+  markdown-it-deflist: 2.0.3
+  markdown-it-emoji: 1.4.0
+  markdown-it-footnote: 3.0.2
+  markdown-it-highlightjs: 3.0.0
+  markdown-it-imsize: 2.0.1
+  markdown-it-ins: 2.0.0
+  markdown-it-smartarrows: 1.0.1
+  markdown-it-sub: 1.0.0
+  markdown-it-sup: 1.0.0
   mithril: 2.0.4
   mithril-stream: 1.1.0
   ramda: 0.25.0
@@ -2353,7 +2365,6 @@ packages:
     resolution:
       integrity: sha512-F/7vkyTtyc/llOIn8oWclcB25KdRaiPBpZYDgJHgh/UHtpgT2p2eldQgtQnLtUvfMKPKxbRaQM/hHkvLHt1Vng==
   /entities/1.1.2:
-    dev: true
     resolution:
       integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
   /entities/2.0.0:
@@ -2933,6 +2944,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
+  /fs/0.0.1-security:
+    dev: false
+    resolution:
+      integrity: sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
   /fsevents/1.2.9:
     bundledDependencies:
       - node-pre-gyp
@@ -4133,6 +4148,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-avPEb8P8EGnwXKClwsNUgryVjllcRqtMYa49NTsbQagYuT1DcXnl1915oxWjoyGrXR6zH/Y0Zc96xWsPcoDKeA==
+  /linkify-it/2.2.0:
+    dependencies:
+      uc.micro: 1.0.6
+    dev: false
+    resolution:
+      integrity: sha512-GnAl/knGn+i1U/wjBz3akz2stz+HrHLsxMwHQGofCDfPvlf+gDKN58UtfmUquTY4/MXeE2x7k19KQmeoZi94Iw==
   /load-json-file/1.1.0:
     dependencies:
       graceful-fs: 4.2.2
@@ -4204,6 +4225,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+  /lodash.flow/3.5.0:
+    dev: false
+    resolution:
+      integrity: sha1-h79AKSuM+D5OjOGjrkIJ4gBxZ1o=
   /lodash.memoize/4.1.2:
     dev: true
     resolution:
@@ -4315,6 +4340,60 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
+  /markdown-it-abbr/1.0.4:
+    dev: false
+    resolution:
+      integrity: sha1-1mtTZFIcuz3Yqlna37ovtoZcj9g=
+  /markdown-it-deflist/2.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-/BNZ8ksW42bflm1qQLnRI09oqU2847Z7MVavrR0MORyKLtiUYOMpwtlAfMSZAQU9UCvaUZMpgVAqoS3vpToJxw==
+  /markdown-it-emoji/1.4.0:
+    dev: false
+    resolution:
+      integrity: sha1-m+4OmpkKljupbfaYDE/dsF37Tcw=
+  /markdown-it-footnote/3.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-JVW6fCmZWjvMdDQSbOT3nnOQtd9iAXmw7hTSh26+v42BnvXeVyGMDBm5b/EZocMed2MbCAHiTX632vY0FyGB8A==
+  /markdown-it-highlightjs/3.0.0:
+    dependencies:
+      highlight.js: 9.15.10
+      lodash.flow: 3.5.0
+    dev: false
+    resolution:
+      integrity: sha1-7T3WGcormOa/IRLRY79EQEM0AhA=
+  /markdown-it-imsize/2.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-zKBCeQXQUziiR8ucqdloxc3dUXA=
+  /markdown-it-ins/2.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-papqMPHi9x6Ul1Z8/f9A8f3mdIM=
+  /markdown-it-smartarrows/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-tXDpwP+YEuDbas4Zr6W6ErZLuac=
+  /markdown-it-sub/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-N1/WAm6ufdywEkl/ZBEZXqHjr+g=
+  /markdown-it-sup/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-y5yf+RpSVawI8/09YyhuFd8KH8M=
+  /markdown-it/9.1.0:
+    dependencies:
+      argparse: 1.0.10
+      entities: 1.1.2
+      linkify-it: 2.2.0
+      mdurl: 1.0.1
+      uc.micro: 1.0.6
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-xHKG4C8iPriyfu/jc2hsCC045fKrMQ0VexX2F1FGYiRxDxqMB2aAhF8WauJ3fltn2kb90moGBkiiEdooGIg55w==
   /math-expression-evaluator/1.2.17:
     dev: true
     resolution:
@@ -4332,6 +4411,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==
+  /mdurl/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
   /media-typer/0.3.0:
     engines:
       node: '>= 0.6'
@@ -6668,6 +6751,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+  /uc.micro/1.0.6:
+    dev: false
+    resolution:
+      integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
   /uglify-js/3.4.10:
     dependencies:
       commander: 2.19.0
@@ -7194,10 +7281,22 @@ specifiers:
   data.maybe: ^1.2.3
   data.task: ^3.1.2
   file-loader: ^1.1.10
+  fs: ^0.0.1-security
   highlight.js: ^9.15.8
   html-webpack-plugin: ^3.0.4
   json-graphql-server: ^2.1.2
   json-server-extension: ^1.1.2
+  markdown-it: ^9.1.0
+  markdown-it-abbr: ^1.0.4
+  markdown-it-deflist: ^2.0.3
+  markdown-it-emoji: ^1.4.0
+  markdown-it-footnote: ^3.0.2
+  markdown-it-highlightjs: ^3.0.0
+  markdown-it-imsize: ^2.0.1
+  markdown-it-ins: ^2.0.0
+  markdown-it-smartarrows: ^1.0.1
+  markdown-it-sub: ^1.0.0
+  markdown-it-sup: ^1.0.0
   mithril: ^2.0.4
   mithril-stream: ^1.1.0
   ramda: ^0.25.0

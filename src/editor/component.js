@@ -1,6 +1,5 @@
 import m from "mithril"
 import { loadSlide, editSlide } from "./model.js"
-import Stream from "mithril-stream"
 
 const Button = {
   view: ({ attrs: { action, label } }) =>
@@ -13,7 +12,7 @@ const Button = {
     )
 }
 
-const Editor = (v) => {
+const Editor = ({ attrs: { Models } }) => {
   let state = { presentationId: "", slide: { title: "", content: "", id: "" } }
 
   const toSlides = (_) =>
@@ -37,11 +36,6 @@ const Editor = (v) => {
     e.preventDefault()
 
     editSlide(state.slide).fork(onError, () => toSlides())
-  }
-
-  const logDom = (d) => {
-    console.log("update", d)
-    return d
   }
 
   return {

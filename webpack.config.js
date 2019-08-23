@@ -1,25 +1,28 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CleanWebpackPlugin = require("clean-webpack-plugin")
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
-  devtool: 'inline-source-map',
+  node: {
+    fs: "empty"
+  },
+  mode: "development",
+  entry: "./src/index.js",
+  devtool: "inline-source-map",
   devServer: {
-    contentBase: './docs',
+    contentBase: "./docs"
   },
   plugins: [
-    new CleanWebpackPlugin(['docs']),
+    new CleanWebpackPlugin(["docs"]),
     new HtmlWebpackPlugin({
-      template: './index.html',
-      filename: 'index.html',
-      inject: 'body',
-    }),
+      template: "./index.html",
+      filename: "index.html",
+      inject: "body"
+    })
   ],
   output: {
-    path: path.resolve(__dirname, './docs'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "./docs"),
+    filename: "bundle.js"
   },
   module: {
     rules: [
@@ -27,20 +30,20 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
-  },
+        use: ["style-loader", "css-loader"]
+      }
+    ]
+  }
 }
