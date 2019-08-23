@@ -34,6 +34,7 @@
 
 .preview-delete {
   width: 100%;
+  z-index: 3;
 }
 
 .preview-delete::after {
