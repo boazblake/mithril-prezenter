@@ -1,35 +1,38 @@
 import Stream from "mithril-stream"
-import remarkable from "remarkable"
+// import remarkable from "remarkable"
 
-const markup = new remarkable("full", {
-  baseUrl: null,
-  breaks: false,
-  gfm: true,
-  headerIds: true,
-  headerPrefix: "",
-  highlight: null,
-  langPrefix: "lang-",
-  mangle: true,
-  pedantic: false,
-  sanitize: false,
-  sanitizer: null,
-  silent: true,
-  smartLists: true,
-  smartypants: true,
-  tables: true,
-  xhtml: true,
-  html: true,
-  linkify: true,
-  linkTarget: "",
-  typographer: true,
-  quotes: "“”‘’",
-})
+// const markup = new remarkable("full", {
+//   baseUrl: null,
+//   breaks: false,
+//   gfm: true,
+//   headerIds: true,
+//   headerPrefix: "",
+//   highlight: null,
+//   langPrefix: "lang-",
+//   mangle: true,
+//   pedantic: false,
+//   sanitize: false,
+//   sanitizer: null,
+//   silent: true,
+//   smartLists: true,
+//   smartypants: true,
+//   tables: true,
+//   xhtml: true,
+//   html: true,
+//   linkify: true,
+//   linkTarget: "",
+//   typographer: true,
+//   quotes: "“”‘’",
+// })
+
+import Asciidoctor from "asciidoctor"
+const markup = Asciidoctor()
 
 const SlideModel = {
   title: "",
   contents: "",
   order: 0,
-  presentation_id: "",
+  presentation_id: ""
 }
 
 const Slides = []
@@ -39,17 +42,17 @@ const Presentations = []
 const SlideShowStruct = {
   keys: new Set(),
   values: {},
-  items: Stream([]),
+  items: Stream([])
 }
 
 const CurrentPresentation = {
   title: "",
   id: "",
   slideShow: Stream([]),
-  Slides,
+  Slides
 }
 
-const getProfile = w => {
+const getProfile = (w) => {
   if (w < 668) return "phone"
   if (w < 920) return "tablet"
   return "desktop"
@@ -62,7 +65,7 @@ const Models = {
   Presentations,
   CurrentPresentation,
   SlideModel,
-  toggleModal: false,
+  toggleModal: false
 }
 
 export default Models

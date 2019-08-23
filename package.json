@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "animejs": "^3.0.1",
+    "asciidoctor": "^2.0.3",
     "data.maybe": "^1.2.3",
     "data.task": "^3.1.2",
     "highlight.js": "^9.15.8",

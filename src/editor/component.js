@@ -1,6 +1,5 @@
 import m from "mithril"
 import { loadSlide, editSlide } from "./model.js"
-import Stream from "mithril-stream"
 
 const Button = {
   view: ({ attrs: { action, label } }) =>
@@ -73,7 +72,11 @@ const Editor = (v) => {
         ),
         m(
           ".editor-right",
-          m.trust(Models.markup.render(state.slide.content || ""))
+          m.trust(
+            Models.markup.convert(state.slide.content || "", {
+              safe: "safe"
+            })
+          )
         )
       ])
   }

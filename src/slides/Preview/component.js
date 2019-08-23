@@ -129,7 +129,7 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
               onclick: () => removeSlideTask(s)
             })
           ]),
-          m(".card-body", m.trust(Models.markup.render(s.content))),
+          m(".card-body", m.trust(Models.markup.convert(s.content))),
           m(".card-footer", [
             m(SlidePosition, {
               slides: state.right(),
