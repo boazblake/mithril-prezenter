@@ -3,19 +3,19 @@ import { savePresentationTask } from "./model.js"
 import { log } from "../services/index.js"
 
 const PresentationModal = ({ attrs }) => {
-  const onError = errors => {
+  const onError = (errors) => {
     log("error")(errors)
     attrs.state.errors = errors
     attrs.toggleModal()
   }
-  const onSuccess = p => {
+  const onSuccess = (p) => {
     attrs.state.title = ""
     attrs.state.errors = []
     attrs.presentations.push(p)
     attrs.toggleModal()
   }
 
-  const save = e => {
+  const save = (e) => {
     e.preventDefault()
     savePresentationTask(attrs.state).fork(onError, onSuccess)
   }
@@ -24,31 +24,30 @@ const PresentationModal = ({ attrs }) => {
     view: () =>
       m("article.modal-container", [
         m(".card", [
-          m(
-            ".card-header",
+          m(".card-header", [
+            m("h2.modal-label", "Presentation Name"),
             m("button.card-delete", {
               onclick: () => {
                 return attrs.toggleModal()
               },
-              "aria-label": "close",
+              "aria-label": "close"
             })
-          ),
+          ]),
           m(".card-body", [
-            m("fieldset", [
-              m("label.modal-label", "Presentation Name"),
+            m(".modal-fieldset", [
               m("input.modal-input", {
                 autofocus: true,
                 type: "text",
-                onchange: e => (attrs.state.title = e.target.value),
-              }),
-            ]),
+                onchange: (e) => (attrs.state.title = e.target.value)
+              })
+            ])
           ]),
           m(
             ".card-footer",
-            m("button.card-btn", { onclick: save }, "save presentation")
-          ),
-        ]),
-      ]),
+            m("button.card-btn", { onclick: save }, "create presentation")
+          )
+        ])
+      ])
   }
 }
 

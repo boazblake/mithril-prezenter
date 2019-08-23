@@ -3,24 +3,24 @@ import { assoc } from "ramda"
 import { saveSlideTask } from "./model.js"
 
 const SlidesModal = ({
-  attrs: { left, pId, slide, toggleModal, getSlides, Models },
+  attrs: { left, pId, slide, toggleModal, getSlides, Models }
 }) => {
   const state = {
     errors: "",
-    title: "",
+    title: ""
   }
 
-  const onError = errors => {
+  const onError = (errors) => {
     log("error")(errors)
     state.errors = errors
   }
 
-  const onSuccess = slides => {
+  const onSuccess = (slides) => {
     getSlides({ attrs: { Models } })
     return toggleModal()
   }
 
-  const save = e => {
+  const save = (e) => {
     e.preventDefault()
     let dto = assoc("presentation_id", pId, assoc("title", state.title, slide))
     saveSlideTask(dto).fork(onError, onSuccess)
@@ -30,31 +30,30 @@ const SlidesModal = ({
     view: () =>
       m("article.modal-container", [
         m(".card", [
-          m(
-            ".card-header",
+          m(".card-header", [
+            m("h2.modal-title", "Slide Title"),
             m("button.card-delete", {
               onclick: () => {
                 return toggleModal()
               },
-              "aria-label": "close",
+              "aria-label": "close"
             })
-          ),
+          ]),
           m(".card-body", [
-            m("fieldset", [
-              m("label.modal-label", "Slide Title"),
+            m(".fieldset", [
               m("input.modal-input", {
                 autofocus: true,
                 type: "text",
-                onchange: e => (state.title = e.target.value),
-              }),
-            ]),
+                onchange: (e) => (state.title = e.target.value)
+              })
+            ])
           ]),
           m(
             ".card-footer",
-            m("button.card-btn", { onclick: save }, "save slide")
-          ),
-        ]),
-      ]),
+            m("button.card-btn", { onclick: save }, "Create New Slide")
+          )
+        ])
+      ])
   }
 }
 

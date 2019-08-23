@@ -5,10 +5,10 @@
   align-content: center;
   margin: 0;
   box-shadow: none;
-  width: 600px;
+  flex-basis: 30%;
 }
 
-.card{
+.card {
   max-width: 600px;
 }
 
@@ -19,9 +19,9 @@
 .editor-right {
   background: white;
   border: 1px dashed green;
-  width: 90%;
+  flex-basis: 70%;
   overflow-y: scroll;
-  padding: 10px;
+  padding-left: 10px;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -37,5 +37,5 @@
 .editor-text {
   height: 80vh;
   margin-bottom: 10px;
-  padding:4px 0 0 8px ;
+  padding: 4px 0 0 8px;
 }
