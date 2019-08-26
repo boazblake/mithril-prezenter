@@ -37,7 +37,6 @@ const toSlides = (model) => [
 ]
 
 const toSlideShow = (model) => {
-  console.log(model)
   return model.CurrentPresentation &&
     isEmpty(model.CurrentPresentation.slideShow())
     ? []

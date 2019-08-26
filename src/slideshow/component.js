@@ -2,6 +2,8 @@ import m from "mithril"
 import { pluck } from "ramda"
 import { animateEntranceRight } from "../services/animations.js"
 
+const ENDING = `<img src="https://imgur.com/uj15GJp.gif" width="100%"/>`
+
 const SlideShow = ({ attrs: { Models } }) => {
   const state = {
     key: undefined,
@@ -12,7 +14,12 @@ const SlideShow = ({ attrs: { Models } }) => {
 
   const nextSlide = (dom) => {
     dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
-    state.cursor == state.size - 1 ? state.cursor : state.cursor++
+    console.log("next", state)
+    if (state.cursor == state.size - 1) state.contents[state.cursor] = ENDING
+    else {
+      state.cursor++
+    }
+    return state
   }
 
   const prevSlide = (dom) => {
@@ -56,9 +63,7 @@ const SlideShow = ({ attrs: { Models } }) => {
             onbeforeupdate: () => !["ArrowUp", "ArrowDown"].includes(state.key),
             onupdate: ({ dom }) => animateEntranceRight({ dom })
           },
-          m.trust(
-            Models.markup.render(state.contents[state.cursor]) || "~ FIN ~"
-          )
+          m.trust(Models.markup.render(state.contents[state.cursor] || ENDING))
         )
       )
   }

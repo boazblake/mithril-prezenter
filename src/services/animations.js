@@ -105,7 +105,7 @@ export const animateFadeOut = ({ dom }) => {
 
 export const animeEntrance = ({ dom }) => {
   let children = [...dom.children]
-  console.log(children)
+  console.log("children", children)
   const res = children.map((el) =>
     anime({
       target: el,
