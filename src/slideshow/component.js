@@ -14,7 +14,6 @@ const SlideShow = ({ attrs: { Models } }) => {
 
   const nextSlide = (dom) => {
     dom.children[0].children[0].scrollIntoView({ behaviour: "smooth" })
-    console.log("next", state)
     if (state.cursor == state.size - 1) state.contents[state.cursor] = ENDING
     else {
       state.cursor++
