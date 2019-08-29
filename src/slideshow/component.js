@@ -2,7 +2,11 @@ import m from "mithril"
 import { pluck } from "ramda"
 import { animateEntranceRight } from "../services/animations.js"
 
-const ENDING = `<img src="https://imgur.com/uj15GJp.gif" width="100%"/>`
+const ENDING = `<div class="endingContainer">
+  <h1 class="endingTitle">THE END!</h1>
+  <img class="endingImg" id="ending" src="https://imgur.com/uj15GJp.gif" width="100%" />
+</div>
+`
 
 const SlideShow = ({ attrs: { Models } }) => {
   const state = {
