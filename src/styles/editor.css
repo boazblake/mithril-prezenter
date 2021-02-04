@@ -18,8 +18,9 @@
 }
 
 .follow {
-  position: aboslute;
+  position: absolute;
   width: 95%;
+  height: 687px;
 }
 
 .editor-left.card > .card-footer > .card-btn {
