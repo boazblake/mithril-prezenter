@@ -58,6 +58,10 @@ const SlideShow = ({ attrs: { Models } }) => {
           onkeyup: ({ key, target }) => {
             state.key = key
             changeSlide(key, target)
+          },
+          onclick: ({x, target}) => {
+            state.key = x > (window.innerWidth/2) ? 'ArrowRight' : 'ArrowLeft'
+            changeSlide(state.key, target)
           }
         },
         m(

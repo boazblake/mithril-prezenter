@@ -1,14 +1,18 @@
 .slideshow {
-  height: 90vh;
-  width: 90%;
+  height: 92vh;
+  width: 100vw;
   margin: 0 auto;
   background: white;
   outline: 0;
+  overflow: auto;
 }
 
 .slidecard {
   animation: stretchRight 1s ease-in-out both;
   outline: 0;
+  width: 55%;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .endingContainer {

@@ -11,6 +11,7 @@
   margin: 0;
   box-shadow: none;
   flex-basis: 30%;
+    height: 687px;
 }
 
 .card {
@@ -20,7 +21,6 @@
 .follow {
   position: absolute;
   width: 95%;
-  height: 687px;
 }
 
 .editor-left.card > .card-footer > .card-btn {
