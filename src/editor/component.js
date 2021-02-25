@@ -50,6 +50,10 @@ const Editor = ({ attrs: { Models } }) => {
           ".editor-left",
           m(".card.follow", [
             m(".card-header", [
+              m(".card-footer", [
+                m(Button, { action: save, label: "Save" }),
+                m(Button, { action: toSlides, label: "Cancel" })
+              ]),
               m("input.editor-input", {
                 type: "text",
                 placeholder: "Slide Title",
@@ -61,10 +65,6 @@ const Editor = ({ attrs: { Models } }) => {
               oninput: updateInput("content"),
               value: state.slide.content
             }),
-            m(".card-footer", [
-              m(Button, { action: save, label: "Save" }),
-              m(Button, { action: toSlides, label: "Cancel" })
-            ])
           ])
         ),
         m(
