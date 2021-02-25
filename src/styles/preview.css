@@ -4,7 +4,7 @@
   margin: 12px;
   overflow: hidden;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .card.preview {
@@ -16,12 +16,21 @@
   order: 1;
 }
 
+.card-header {
+  max-height: 30%;
+}
+
+
 .preview > .card-footer {
   background: transparent;
   order: 3;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   z-index: 3;
 }
+
+
 
 .preview > .card-body {
   position: absolute;
@@ -43,9 +52,17 @@
   content: none;
 }
 
+.preview-edit {
+  height: 50%;
+  opacity: 0;
+}
+
+.preview-edit::before {
+  content: 'Edit';
+}
+
 .slidePosition {
   color: #e67e22;
-  font-size: 6rem;
 }
 
 .leftBtn:enabled {

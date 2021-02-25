@@ -124,15 +124,16 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
         },
         [
           m(".card-header", [
-            m("span.slidePosition", s.order),
+            m("p.slidePosition", s.order),
             m(
               ".card-delete.preview-delete",
               {
                 onclick: () => removeSlideTask(s)
               },
               "remove slide"
-            )
+            ),
           ]),
+          m("p.slidePosition", s.title),
           m(".card-body", m.trust(Models.markup.render(s.content || ""))),
           m(".card-footer", [
             m(SlidePosition, {
@@ -140,6 +141,12 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
               dir: "left",
               slide: s,
               update: updateAndSaveSlideTask
+            }),
+            m('button.preview-edit',{
+              onclick: () =>  {
+                console.log(Models.CurrentPresentation)
+                m.route.set(`/edit/${Models.CurrentPresentation.id}/slide/${s.id}`)
+              },
             }),
             m(SlidePosition, {
               slides: state.right(),
