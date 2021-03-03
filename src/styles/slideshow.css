@@ -13,6 +13,7 @@
   width: 55%;
   margin: 0 auto;
   height: 100%;
+  cursor: pointer;
 }
 
 .endingContainer {
@@ -32,5 +33,10 @@
   animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
-.endingImg {
+.slideshow .right {
+  cursor: url(~/assets/right-cursor.png), auto;
+}
+
+.slideshow .left {
+  cursor: url(~/assets/left-cursor.png), auto;
 }

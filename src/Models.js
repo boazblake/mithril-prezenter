@@ -11,13 +11,17 @@ import abbr from "markdown-it-abbr"
 import imsize from "markdown-it-imsize"
 import arrows from "markdown-it-smartarrows"
 import hljs from "highlight.js"
+import javascript from 'highlight.js/lib/languages/javascript'
+import 'highlight.js/styles/shades-of-purple.css';
+hljs.registerLanguage('javascript', javascript);
+
 
 const markup = new MarkdownIt({
   html: true, // Enable HTML tags in source
-  xhtmlOut: false, // Use '/' to close single tags (<br />).
+  xhtmlOut: true, // Use '/' to close single tags (<br />).
   // This is only for full CommonMark compatibility.
   breaks: true, // Convert '\n' in paragraphs into <br>
-  langPrefix: "lang-", // CSS language prefix for fenced blocks. Can be
+  langPrefix: "", // CSS language prefix for fenced blocks. Can be
   // useful for external highlighters.
   linkify: true, // Autoconvert URL-like text to links
 
@@ -39,7 +43,7 @@ const markup = new MarkdownIt({
     return str
   }
 })
-  .use(highlightjs)
+  .use(highlightjs, {hljs})
   .use(emoji)
   .use(sub)
   .use(sup)
@@ -89,5 +93,8 @@ const Models = {
   SlideModel,
   toggleModal: false
 }
+
+
+console.log(Models)
 
 export default Models
