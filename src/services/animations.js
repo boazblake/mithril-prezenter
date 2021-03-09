@@ -35,7 +35,6 @@ export const animateEntranceRight = ({ dom }) => {
 }
 
 export const animateChildEntrance = ({ dom }) => {
-  console.log("wtf", dom)
   let children = [...dom.children]
 
   return children.map((child, index) => {
@@ -105,7 +104,6 @@ export const animateFadeOut = ({ dom }) => {
 
 export const animeEntrance = ({ dom }) => {
   let children = [...dom.children]
-  console.log("children", children)
   const res = children.map((el) =>
     anime({
       target: el,
@@ -115,7 +113,6 @@ export const animeEntrance = ({ dom }) => {
     })
   )
 
-  console.log("anim", res)
   return res
 }
 

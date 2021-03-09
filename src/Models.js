@@ -13,8 +13,9 @@ import arrows from "markdown-it-smartarrows"
 import hljs from "highlight.js"
 import javascript from 'highlight.js/lib/languages/javascript'
 import 'highlight.js/styles/shades-of-purple.css';
+import printJS from "print-js"
 hljs.registerLanguage('javascript', javascript);
-
+const PASS = 'romey'
 
 const markup = new MarkdownIt({
   html: true, // Enable HTML tags in source
@@ -38,10 +39,7 @@ const markup = new MarkdownIt({
   // Highlighter function. Should return escaped HTML,
   // or '' if the source string is not changed and should be escaped externally.
   // If result starts with <pre... internal wrapper is skipped.
-  highlight: function(str, lang) {
-    console.log("highilight", hljs, lang, string)
-    return str
-  }
+  highlight: (str, lang) => str
 })
   .use(highlightjs, {hljs})
   .use(emoji)
@@ -84,17 +82,27 @@ const getProfile = (w) => {
   return "desktop"
 }
 
+const caputerScreen = () => {
+  let w=window.open();
+  let c = document.cloneNode(document)
+  console.log(c)
+  w.document.body.appendChild(c.getElementById('slidecard'))
+  w.print();
+  w.close();
+}
+
 const Models = {
+  caputerScreen,
   markup,
   profile: getProfile(window.innerWidth),
   SlideShowStruct,
   Presentations,
   CurrentPresentation,
   SlideModel,
-  toggleModal: false
+  toggleModal: false,
+  isAuthenticated: () => sessionStorage.getItem('password'),
+  authenticate: pass => pass == PASS && sessionStorage.setItem('password', pass)
 }
 
-
-console.log(Models)
 
 export default Models

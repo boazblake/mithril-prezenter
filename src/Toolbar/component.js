@@ -1,5 +1,17 @@
 import m from "mithril"
-import { isEmpty, split, view, lensProp } from "ramda"
+import { isEmpty, split, view, lensProp,   } from "ramda"
+
+
+const login = model =>
+  m(
+    "a.toolbar-item",
+    {
+      onclick: () => (model.toggleModal = !model.toggleModal)
+    },
+    "Login"
+  )
+
+
 
 const toggleModal = (model) => {
   return [
@@ -36,11 +48,9 @@ const toSlides = (model) => [
   )
 ]
 
-const toSlideShow = (model) => {
-  return model.CurrentPresentation &&
-    isEmpty(model.CurrentPresentation.slideShow())
-    ? []
-    : m(
+const toSlideShow = (model) =>   model.CurrentPresentation &&
+    !isEmpty(model.CurrentPresentation.slideShow())
+    && m(
         m.route.Link,
         {
           class: "toolbar-item",
@@ -49,25 +59,33 @@ const toSlideShow = (model) => {
         },
         "Slide Show"
       )
-}
+
+const printToPDF = model =>
+  m(
+   '.toolbar-item',
+    {
+      onclick: e => model.caputerScreen()
+    },
+    "Print Slide"
+  )
 
 const navView = (model) => {
   let page = view(lensProp(1), split("/", m.route.get()))
   switch (page) {
     case "presentation":
-      return [toPresentations, toSlideShow(model)]
+      return [login(model), toPresentations, toSlideShow(model)]
       break
 
     case "slideshow":
-      return [toPresentations, toSlides(model)]
+      return [login(model), toPresentations, toSlides(model)]
       break
 
     case "slides":
-      return [toPresentations, toSlideShow(model)]
+      return [login(model), toPresentations, toSlideShow(model)]
       break
 
     case "edit":
-      return [toPresentations, toSlides(model), toSlideShow(model)]
+      return [login(model), toPresentations, toSlides(model), toSlideShow(model)]
       break
     default:
   }
@@ -77,10 +95,13 @@ const actionView = (model) => {
   let page = view(lensProp(1), split("/", m.route.get()))
   switch (page) {
     case "presentations":
-      return [toggleModal(model)]
+      return [login(model), toggleModal(model)]
       break
     case "presentation":
-      return [toggleModal(model)]
+      return [login(model),  toggleModal(model)]
+      break
+    case "slideshow":
+      return [login(model),  printToPDF(model)]
       break
     default:
   }

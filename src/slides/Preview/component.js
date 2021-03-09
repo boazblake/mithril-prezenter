@@ -144,7 +144,6 @@ const Preview = ({ attrs: { getSlides, Models, s, key, state } }) => {
             }),
             m('button.preview-edit',{
               onclick: () =>  {
-                // console.log(Models.CurrentPresentation)
                 m.route.set(`/edit/${Models.CurrentPresentation.id}/slide/${s.id}`)
               },
             }),

@@ -58,7 +58,7 @@ const calcStatePosition = (x) => x > (window.innerWidth/2) ? 'right' : 'left'
     oninit: (state.slide = state.contents[state.cursor]),
     view: ({ attrs: { Models } }) =>
       m(
-        ".slideshow .right",
+        ".slideshow#slideshow.right",
         {
           tabindex: 0,
           onkeyup: ({ key, target }) => {
@@ -73,17 +73,15 @@ const calcStatePosition = (x) => x > (window.innerWidth/2) ? 'right' : 'left'
           }
         },
         m(
-          ".slidecard",
+          ".slidecard#slidecard",
           {
             onmouseenter:({x, target}) => {
               state.update = false
               target.style.cursor = calcStatePosition(x)
-              console.log(calcStatePosition(x), target.style)
             },
             onmouseleave:({x, target}) => {
               state.update = false
               target.style.cursor = calcStatePosition(x), target
-              console.log(calcStatePosition(x), target.style)
             },
             onbeforeupdate: () => !["ArrowUp", "ArrowDown"].includes(state.key) && state.update,
             onupdate: ({ dom }) => animateEntranceRight({ dom })

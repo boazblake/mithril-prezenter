@@ -25,6 +25,7 @@
     "data.task": "^3.1.2",
     "fs": "^0.0.1-security",
     "highlight.js": "^9.15.8",
+    "html2canvas": "^1.0.0-rc.7",
     "json-graphql-server": "^2.1.2",
     "json-server-extension": "^1.1.2",
     "markdown-it": "^9.1.0",
@@ -40,6 +41,7 @@
     "markdown-it-sup": "^1.0.0",
     "mithril": "^2.0.4",
     "mithril-stream": "^1.1.0",
+    "print-js": "^1.6.0",
     "ramda": "^0.25.0",
     "remarkable": "^1.7.1"
   },

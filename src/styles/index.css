@@ -15,6 +15,13 @@
   box-sizing: border-box;
 }
 
+@media print {
+   #slidecard {
+      height: 100% !important;
+      width: 100% !important;
+      display: inline-block;
+  }
+}
 
 strong {
   font-weight: 700;
